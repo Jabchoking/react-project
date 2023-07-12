@@ -1,10 +1,12 @@
 import './assets/css/reset.css'
+import Home from './page/Home'
+
 
 function App() {
 
   return (
     <>
-      test
+      <Home/>
     </>
   )
 }
