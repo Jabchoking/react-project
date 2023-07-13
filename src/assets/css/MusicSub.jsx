@@ -63,3 +63,7 @@ export const Benneritemli=styled.li`
     height: 60px;
     border: 1px solid white;
 `
+// 베너 안쪽 아이템
+export const Smallitemli=styled.li`
+    
+`

@@ -1,10 +1,11 @@
 import React, { memo, useEffect } from 'react';
 import { MusicListBennerdiv } from '../assets/css/MusicSub';
 import { useDispatch, useSelector } from 'react-redux';
-import { kordata } from '../store/modules/kordataAxios';
-
+import { kordata, useswiper } from '../store/modules/kordataAxios';
+import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Benneritem from './Benneritem';
 
 
 
@@ -12,9 +13,22 @@ const KorlistBenner = memo(() => {
     const data = useSelector(state => state.kordata.kodata)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(kordata())
-    }, [])
-    console.log(data)
+        const fetchData = async () => {
+            await dispatch(kordata());
+            dispatch(useswiper(5));
+        };
+    
+        fetchData();
+    }, []);
+    
+    const swiperdata = useSelector(state => state.kordata.korswiper);
+    
+    useEffect(() => {
+        console.log(swiperdata);
+    }, [swiperdata]);
+    
+    
+    
     return (
         <MusicListBennerdiv>
 
@@ -26,10 +40,10 @@ const KorlistBenner = memo(() => {
                     onSlideChange={() => console.log('slide change')}
                     onSwiper={(swiper) => console.log(swiper)}
                 >
-                    <SwiperSlide>Slide 1</SwiperSlide>
-                    <SwiperSlide>Slide 2</SwiperSlide>
-                    <SwiperSlide>Slide 3</SwiperSlide>
-                    <SwiperSlide>Slide 4</SwiperSlide>
+                    {
+                        swiperdata.map((i,j)=> <SwiperSlide key={j} style={{width:350}} > <Benneritem key={j} i={i} /> </SwiperSlide> )
+                    }
+                    
                 </Swiper>
             </ul>
         </MusicListBennerdiv>
