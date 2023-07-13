@@ -14,8 +14,8 @@ function App() {
           
         </Route>
         <Route path='/chart' element={ <MusicChart/> } >
-
-          </Route>
+            
+            </Route>
       </Routes>
       </BrowserRouter>
       
