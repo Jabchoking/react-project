@@ -12,7 +12,7 @@ export const kordata = createAsyncThunk(
     'kordeta/kordata',
     async () => {
         try {
-            const res = await axios.get(`https://gist.githubusercontent.com/Jabchoking/89b047ed80935a36b3dd476b04a541ab/raw/9429041fd5beff9a47b9d048e7ef015260c28406/gistfile1.txt`)
+            const res = await axios.get(`https://gist.githubusercontent.com/Jabchoking/89b047ed80935a36b3dd476b04a541ab/raw/3804716d4f7a4e2b2f9cda7fdb4d73fd4b9f057b/gistfile1.txt`)
             return res.data
         } catch (err) {
             console.log(err)

@@ -7,7 +7,7 @@ const Benneritem = memo(({i}) => {
         <Benneritemli>
             <ul>
                 {
-                    i&&i.map(z=><Smallitem key={z.id} z={z} /> )
+                    i&&i.map(z=><Smallitem key={z.rank} z={z} /> )
                 }
             </ul>
         </Benneritemli>
