@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 import { Smallitemli } from '../assets/css/MusicSub';
 import { AiFillBulb, AiFillCaretDown, AiFillCaretUp, AiOutlineMinusCircle } from "react-icons/ai";
+import { NavLink } from 'react-router-dom';
 
-const Smallitem = memo(({ z }) => {
+const Smallitem = memo(({ z , listname }) => {
     return (
         <Smallitemli>
             {z.image? <img src={z.image} alt="" />  : ""}
@@ -19,7 +20,7 @@ const Smallitem = memo(({ z }) => {
 
             </div>
             <div>
-                {z.name}
+                <NavLink to={`/chart/${z.rank}/${listname}`} >{z.name}</NavLink>
                 <h4 className='content' >
                     {z.artist}
                 </h4>

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Benneritem from './Benneritem';
+import { NavLink } from 'react-router-dom';
 
 const KorlistBenner = memo(() => {
     const dispatch = useDispatch()
@@ -39,16 +40,14 @@ const KorlistBenner = memo(() => {
     return (
         <MusicListBennerdiv>
 
-            <h3>국내 HOT 100</h3>
+            <h3 style={{display:'flex',justifyContent:'space-between'}} >국내 HOT 100 <NavLink to={`/chart/${`kor`}`} >더보기</NavLink> </h3>
             <ul>
                 <Swiper
                     spaceBetween={5}
                     slidesPerView={wsize}
-                // onSlideChange={() => console.log('slide change')}
-                // onSwiper={(swiper) => console.log(swiper)}
                 >
                     {
-                        swiperdata.map((i, j) => <SwiperSlide key={j} style={{ width: 350, }} > <Benneritem key={j} i={i} /> </SwiperSlide>)
+                        swiperdata.map((i, j) => <SwiperSlide key={j} style={{ width: 350, }} > <Benneritem key={j} i={i} listname={'kor'} /> </SwiperSlide>)
                     }
 
                 </Swiper>

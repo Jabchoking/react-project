@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { NavBardiv } from '../assets/css/MusicSub';
 import { NavLink } from 'react-router-dom';
-import { AiFillTrophy } from 'react-icons/ai';
+import { AiFillTrophy, AiOutlineLogin, AiOutlineUser } from 'react-icons/ai';
 
 
 
@@ -12,19 +12,21 @@ const NavBar = memo(() => {
         <NavBardiv>
             <h2>네비게이션바</h2>
             <hr />
-            {/* <ul>
-                <li><NavLink to={'/'} activeClassName='on' >홈</NavLink></li>
-                <li><NavLink to={'/chart'} activeClassName='on' >차트</NavLink></li>
-            </ul> */}
+            <NavLink to={``} >
+                <AiOutlineUser /><span>로그인</span>
+            </NavLink>
+            <hr />
+            <input type="text" placeholder='검색 가능' />
+            <hr />
             <ul>
                 <li>
-                    <NavLink to="/" className={({ isActive }) =>  isActive ? "on" : ""} >
+                    <NavLink to="/" className={({ isActive }) => isActive ? "on" : ""} >
                         홈
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/chart" className={({ isActive }) => isActive ? "on" : ""}>
-                        <AiFillTrophy style={{color:"#EDE837"}} /> 차트
+                        <AiFillTrophy style={{ color: "#EDE837" }} /> 차트
                     </NavLink>
                 </li>
             </ul>

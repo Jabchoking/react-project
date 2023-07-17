@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { Homecontent, MusicChartdiv } from '../assets/css/MusicSub';
-import KorlistBenner from './KorlistBenner';
-import AudioBar from './AudioBar';
-import NavBar from './NavBar';
-import BillboardBenner from './BillboardBenner';
+import KorlistBenner from '../components/KorlistBenner';
+import AudioBar from '../components/AudioBar';
+import NavBar from '../components/NavBar';
+import BillboardBenner from '../components/BillboardBenner';
 
 const MusicChart = memo(() => {
     return (
