@@ -1,13 +1,19 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { NavBardiv } from '../assets/css/MusicSub';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AiFillTrophy, AiOutlineLogin, AiOutlineUser } from 'react-icons/ai';
 
 
 
 
 const NavBar = memo(() => {
-
+    const navi=useNavigate()
+    const [searchtext , settext]=useState('')
+    const inputchange=e=>settext(e.target.value)
+    const searchsubmit=e=>{
+        e.preventDefault()
+        navi(`/${searchtext}`)
+    }
     return (
         <NavBardiv>
             <h2>네비게이션바</h2>
@@ -16,7 +22,9 @@ const NavBar = memo(() => {
                 <AiOutlineUser /><span>로그인</span>
             </NavLink>
             <hr />
-            <input type="text" placeholder='검색 가능' />
+            <form onSubmit={searchsubmit} >
+                <input type="text" placeholder='검색 가능' value={searchtext} onChange={inputchange} />
+            </form>
             <hr />
             <ul>
                 <li>

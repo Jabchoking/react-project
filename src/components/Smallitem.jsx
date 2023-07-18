@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 const Smallitem = memo(({ z , listname }) => {
     return (
         <Smallitemli>
+            {/* <img src="img/Allergy.jpg" alt="" /> */}
             {z.image? <img src={z.image} alt="" />  : ""}
             <div>
                 <span >
@@ -22,7 +23,7 @@ const Smallitem = memo(({ z , listname }) => {
             <div>
                 <NavLink to={`/chart/${z.rank}/${listname}`} >{z.name}</NavLink>
                 <h4 className='content' >
-                    {z.artist}
+                    <NavLink to={`/chart/${`kor`}/${z.artist}/${`artist`}`} >{z.artist}</NavLink>
                 </h4>
             </div>
         </Smallitemli>

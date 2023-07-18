@@ -36,11 +36,12 @@ const KorlistBenner = memo(() => {
             window.removeEventListener('resize', handleResize);
         };
     }, [wsize]);
-
+    const kordatalist=useSelector(state=>state.kordata.kodata)
     return (
         <MusicListBennerdiv>
 
-            <h3 style={{display:'flex',justifyContent:'space-between'}} >국내 HOT 100 <NavLink to={`/chart/${`kor`}`} >더보기</NavLink> </h3>
+            {/* <h3 style={{display:'flex',justifyContent:'space-between'}} >국내 HOT 100 <NavLink to={`/chart/${`kor`}`} >더보기</NavLink> </h3> */}
+            <h3 style={{display:'flex',justifyContent:'space-between'}} >국내 HOT 100 <NavLink to={`/chart/${`kor`}/${'text'}/${'nop'}`} >더보기...</NavLink> </h3>
             <ul>
                 <Swiper
                     spaceBetween={5}

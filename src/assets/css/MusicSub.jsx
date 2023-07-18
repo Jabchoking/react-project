@@ -16,6 +16,9 @@ export const Homecontent = styled.div`
     }
     padding: 40px;
     color: white;
+    div div span {
+        cursor: pointer;
+    }
 `
 
 
@@ -42,6 +45,11 @@ export const NavBardiv = styled.div`
         border: 1px solid #1a1a1a ;
         border-radius: 5px;
         font-size: 16px;
+        box-sizing: border-box;
+        
+        &:focus{
+        border: 1px solid #043E69;
+        }
     }
 `
 // 오디오 바 
@@ -65,6 +73,9 @@ export const MusicChartdiv = styled.div`
 export const MusicListBennerdiv = styled.div`
     height: 400px;
     /* background-color: #333333; */
+    a{
+        color:white;
+    }
 `
 
 // 베너 아이템
@@ -94,7 +105,7 @@ export const Smallitemli = styled.li`
         background-color: white;
         /* opacity: 0.4; */
     }
-    margin: 10px 0;
+    margin: 10px;
     height: 60px;
     display: flex;
     flex-direction:row;
@@ -112,7 +123,9 @@ export const Smallitemli = styled.li`
             transform: translate(0,0);
         }
         h4{
-            color:#888888
+            a{
+                color:#888888;
+            }
         }
     }
 `
@@ -154,13 +167,16 @@ export const MusicListul = styled.ul`
     color : white;
 `
 // 더보기 음악 리스트 아이템
-export const Listitemli =styled.li`
+export const Listitemli = styled.li`
     height: 60px;
+    width: 100%;
     img {
         width: 60px;
         height: 60px;
     }
     display: flex;
-    justify-content:space-between;
-
+`
+// 검색결과 페이지
+export const Searchpagediv=styled.div`
+    font-size: 16px;
 `

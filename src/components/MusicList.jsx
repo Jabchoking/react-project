@@ -7,14 +7,18 @@ import AudioBar from './AudioBar';
 import NavBar from './NavBar';
 
 const MusicList = memo(() => {
-    const { listname } = useParams()
+    const { listname ,text,type } = useParams()
     const list = useSelector(state => listname === `kor` ? state.kordata.kodata : state.billboarddata.billboarddatas)
+    const listfilter = type === 'nop' ? list : list.filter(i =>i[type].includes(text))
+
     return (
         <>
             <Homecontent>
                 <MusicListul>
                     {
-                        list.map(i => <Listitem key={i.rank} i={i} />)
+                        listfilter.length!==0?
+                        listfilter.map((i,j) => <Listitem key={i.rank} i={i} j={j} />)
+                        :<li><h2>검색결과 없음</h2></li>
                     }
                 </MusicListul>
             </Homecontent>

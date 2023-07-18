@@ -44,7 +44,7 @@ const BillboardBenner = memo(() => {
 
     return (
         <MusicListBennerdiv>
-            <h3 style={{display:'flex',justifyContent:'space-between'}} >billboard HOT  <NavLink to={`/chart/${`billboard`}`} >더보기</NavLink></h3>
+            <h3 style={{display:'flex',justifyContent:'space-between'}} >billboard HOT  <NavLink to={`/chart/${`billboard`}/${'text'}/${'nop'}`} >더보기...</NavLink></h3>
             <ul>
                 <Swiper spaceBetween={5} slidesPerView={wsize}>
                     {billboardswiperdata.map((i, j) => (

@@ -12,6 +12,7 @@ const ItemInfoPage = memo(() => {
     const chkitem = list.find(i => i.rank === Number(chartid))
     const [info , setinfo] = useState(false)
     const clickinfo =e=> setinfo(!info)
+    console.log(chkitem.image)
     return (
         <>
             <Iteminfobg onClick={clickinfo} style={{display:info?"block":"none"}} >
@@ -19,7 +20,7 @@ const ItemInfoPage = memo(() => {
             <Iteminfoitem onClick={clickinfo} style={{display:info?"block":"none"}} > 
                 <Inner>
                     <div>
-                        <img src={chkitem.image} alt="" />
+                        <img src={`${chkitem.image}`} alt="" />
                         <h4>
                             {chkitem.name}<br />
                             <em>{chkitem.artist}</em>
