@@ -4,7 +4,7 @@ import axios from 'axios'
 const initialState = {
     kodata: [],
     korswiper: [],
-    loding: true,
+    loading: true,
     state: null
 }
 
@@ -16,6 +16,7 @@ export const kordata = createAsyncThunk(
             return res.data
         } catch (err) {
             console.log(err)
+            throw err;
         }
     })
 const kordataslice = createSlice({
@@ -49,16 +50,16 @@ const kordataslice = createSlice({
         bulider
             .addCase(kordata.pending, (state, action) => {
                 state.state = '로딩중'
-                state.loding = true
+                state.loading = true
             })
             .addCase(kordata.fulfilled, (state, action) => {
                 state.state = '성공'
-                state.loding = false
+                state.loading = false
                 state.kodata = action.payload
             })
             .addCase(kordata.rejected, (state, action) => {
                 state.state = '실패'
-                state.loding = true
+                state.loading = true
             })
     }
 })

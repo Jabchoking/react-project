@@ -7,7 +7,7 @@ const Smallitem = memo(({ z , listname }) => {
     return (
         <Smallitemli>
             {/* <img src="img/Allergy.jpg" alt="" /> */}
-            {z.image? <img src={z.image} alt="" />  : ""}
+            {z.image? <img src={listname === 'kor' ? `/${z.image}`: `${z.image}`} alt="" />  : ""}
             <div>
                 <span >
                     {z.rank}

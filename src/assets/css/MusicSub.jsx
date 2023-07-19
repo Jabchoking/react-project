@@ -16,9 +16,7 @@ export const Homecontent = styled.div`
     }
     padding: 40px;
     color: white;
-    div div span {
-        cursor: pointer;
-    }
+    
 `
 
 
@@ -150,6 +148,7 @@ export const ItemInfoPagediv=styled.div`
         width: 180px;
         height: 180px;
     }
+    .cursor{cursor: pointer;}
 `
 export const Iteminfoitem = styled.div`
     position: fixed;

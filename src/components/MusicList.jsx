@@ -17,7 +17,7 @@ const MusicList = memo(() => {
                 <MusicListul>
                     {
                         listfilter.length!==0?
-                        listfilter.map((i,j) => <Listitem key={i.rank} i={i} j={j} />)
+                        listfilter.map((i,j) => <Listitem key={i.rank} i={i} j={j} listname={listname} />)
                         :<li><h2>검색결과 없음</h2></li>
                     }
                 </MusicListul>

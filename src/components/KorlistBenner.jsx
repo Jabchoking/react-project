@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 
 const KorlistBenner = memo(() => {
     const dispatch = useDispatch()
-    const [wsize, setwsize] = useState(2);
+    const [wsize, setwsize] = useState(3);
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(kordata());

@@ -2,7 +2,6 @@ import React, { memo, useEffect, useState } from 'react';
 import { MusicListBennerdiv } from '../assets/css/MusicSub';
 import { useDispatch, useSelector } from 'react-redux';
 import { billboarddata, billboardswiper } from '../store/modules/billboardAxios';
-import axios from 'axios';
 import Benneritem from './Benneritem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -10,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 const BillboardBenner = memo(() => {
     const dispatch = useDispatch();
-    const [wsize, setwsize] = useState(2);
+    const [wsize, setwsize] = useState(3);
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(billboarddata());
