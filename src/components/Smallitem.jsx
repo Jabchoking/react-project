@@ -23,7 +23,7 @@ const Smallitem = memo(({ z , listname }) => {
             <div>
                 <NavLink to={`/chart/${z.rank}/${listname}`} >{z.name}</NavLink>
                 <h4 className='content' >
-                    <NavLink to={`/chart/${`kor`}/${z.artist}/${`artist`}`} >{z.artist}</NavLink>
+                    <NavLink to={`/chart/${listname}/${z.artist}/${`artist`}`} >{z.artist}</NavLink>
                 </h4>
             </div>
         </Smallitemli>

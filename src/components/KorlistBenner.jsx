@@ -21,6 +21,21 @@ const KorlistBenner = memo(() => {
 
     const swiperdata = useSelector(state => state.kordata.korswiper);
 
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         const width = window.innerWidth;
+    //         if (width > 1400) {
+    //             setwsize(3);
+    //         } else {
+    //             setwsize(2);
+    //         }
+    //     };
+
+    //     window.addEventListener('resize', handleResize);
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     };
+    // }, [wsize]);
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
@@ -30,18 +45,27 @@ const KorlistBenner = memo(() => {
                 setwsize(2);
             }
         };
-
+        const handleFullscreenChange = () => {
+            handleResize();
+        };
+        const handleFullscreenError = () => {
+            console.log("스크린에러")
+        };
         window.addEventListener('resize', handleResize);
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('fullscreenerror', handleFullscreenError);
         return () => {
             window.removeEventListener('resize', handleResize);
+            document.removeEventListener('fullscreenchange', handleFullscreenChange);
+            document.removeEventListener('fullscreenerror', handleFullscreenError);
         };
     }, [wsize]);
-    const kordatalist=useSelector(state=>state.kordata.kodata)
+
+    const kordatalist = useSelector(state => state.kordata.kodata)
     return (
         <MusicListBennerdiv>
 
-            {/* <h3 style={{display:'flex',justifyContent:'space-between'}} >국내 HOT 100 <NavLink to={`/chart/${`kor`}`} >더보기</NavLink> </h3> */}
-            <h3 style={{display:'flex',justifyContent:'space-between'}} >국내 HOT 100 <NavLink to={`/chart/${`kor`}/${'text'}/${'nop'}`} >더보기...</NavLink> </h3>
+            <h3 style={{ display: 'flex', justifyContent: 'space-between' }} >국내 HOT 100 <NavLink to={`/chart/${`kor`}/${'text'}/${'nop'}`} >더보기...</NavLink> </h3>
             <ul>
                 <Swiper
                     spaceBetween={5}

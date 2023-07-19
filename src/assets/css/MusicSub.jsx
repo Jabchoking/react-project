@@ -144,6 +144,13 @@ export const Iteminfobg = styled.div`
     height: 100%;
     z-index: 100;
 `
+// 인포 컨텐츠
+export const ItemInfoPagediv=styled.div`
+    img{
+        width: 180px;
+        height: 180px;
+    }
+`
 export const Iteminfoitem = styled.div`
     position: fixed;
     background-color: #222222;

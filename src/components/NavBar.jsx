@@ -18,7 +18,7 @@ const NavBar = memo(() => {
         <NavBardiv>
             <h2>네비게이션바</h2>
             <hr />
-            <NavLink to={``} >
+            <NavLink to={`/Login`} >
                 <AiOutlineUser /><span>로그인</span>
             </NavLink>
             <hr />

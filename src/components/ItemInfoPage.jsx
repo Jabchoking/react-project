@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Homecontent, Inner, Iteminfobg, Iteminfoitem } from '../assets/css/MusicSub';
+import { Homecontent, Inner, ItemInfoPagediv, Iteminfobg, Iteminfoitem } from '../assets/css/MusicSub';
 import AudioBar from './AudioBar';
 import NavBar from './NavBar';
 import { AiOutlineDash, AiOutlineHeart } from 'react-icons/ai';
@@ -20,7 +20,7 @@ const ItemInfoPage = memo(() => {
             <Iteminfoitem onClick={clickinfo} style={{display:info?"block":"none"}} > 
                 <Inner>
                     <div>
-                        <img src={`${chkitem.image}`} alt="" />
+                        <img src={chkitem.image} alt="" />
                         <h4>
                             {chkitem.name}<br />
                             <em>{chkitem.artist}</em>
@@ -32,7 +32,7 @@ const ItemInfoPage = memo(() => {
             </Iteminfoitem>
             <Homecontent>
                 <Inner>
-                    <div>
+                    <ItemInfoPagediv>
                         <img src={chkitem.image} alt="" />
                         <div>
                             <h2>{chkitem.name}</h2>
@@ -47,7 +47,7 @@ const ItemInfoPage = memo(() => {
                                 <button><AiOutlineDash/></button>
                             </div>
                         </div>
-                    </div>
+                    </ItemInfoPagediv>
                 </Inner>
             </Homecontent>
             <AudioBar />
