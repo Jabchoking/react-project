@@ -10,13 +10,7 @@ import {
   changeInput,
   searchList,
 } from "../redux/item/listSlice";
-import {
-  ListForm,
-  ListH2,
-  ListTable,
-  ListUl,
-  ListbuttonMore,
-} from "../assets/css/MusicSubcss";
+import { ListDiv } from "../assets/css/MusicSubcss";
 
 const List = () => {
   const { data, randomUrls, searchTerm, filteredBySearch } = useSelector(
@@ -24,7 +18,6 @@ const List = () => {
   );
   const [outputCount, setOutputCount] = useState(data.list.length);
   const dispatch = useDispatch();
-  const { ListID } = useParams();
 
   useEffect(() => {
     dispatch(fetchData());
@@ -54,17 +47,17 @@ const List = () => {
   };
 
   return (
-    <div>
-      <ListH2>고객지원센터</ListH2>
-      <ListUl>
+    <ListDiv>
+      <h2>고객지원센터</h2>
+      <ul>
         <li onClick={() => handleMenuClick("전체")}>전체</li>
         <li onClick={() => dispatch(Menu("공지사항"))}>공지사항</li>
         <li>
           <Link to={"/list/QNA"}>QNA</Link>
         </li>
         <li onClick={() => dispatch(Menu("이벤트"))}>진행 중인 이벤트</li>
-      </ListUl>
-      <ListForm onSubmit={handleFormSubmit}>
+      </ul>
+      <form onSubmit={handleFormSubmit}>
         <input
           type="text"
           value={searchTerm}
@@ -74,8 +67,8 @@ const List = () => {
         <button type="onSubmit">
           <AiOutlineSearch />
         </button>
-      </ListForm>
-      <ListTable>
+      </form>
+      <table>
         <caption>LIST</caption>
         <colgroup>
           <col className="NO" />
@@ -124,16 +117,16 @@ const List = () => {
             </tr>
           ))}
         </tbody>
-      </ListTable>
+      </table>
       {!searchTerm && !data.filtered1 && randomUrls.length !== 90 && (
-        <ListbuttonMore>
+        <p>
           <button onClick={handleOutputCountChange}>
             더 보기
-            <AiOutlineDown />{" "}
+            <AiOutlineDown />
           </button>
-        </ListbuttonMore>
+        </p>
       )}
-    </div>
+    </ListDiv>
   );
 };
 

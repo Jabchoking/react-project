@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import AudioBar from './AudioBar';
 import NavBar from './NavBar';
-import { Homecontent, Searchpagediv } from '../assets/css/MusicSub';
+import { Homecontent, Inner, Searchpagediv } from '../assets/css/MusicSub';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Footer from '../footer/Footer';
 
 const Searchpage = memo(() => {
     const {searchtext}=useParams()
@@ -17,6 +18,7 @@ const Searchpage = memo(() => {
     return (
         <>
         <Homecontent>
+        <Inner>
         <Searchpagediv>
             <h2>{searchtext} 검색결과</h2>
             <h3>곡 제목</h3>
@@ -73,6 +75,8 @@ const Searchpage = memo(() => {
             </ul>
 
         </Searchpagediv>
+        </Inner>
+        <Footer />
         </Homecontent>
             
             <AudioBar />

@@ -7,6 +7,7 @@ import NavBar from './NavBar';
 import { AiOutlineDash, AiOutlineHeart } from 'react-icons/ai';
 import { kordata } from '../store/modules/kordataAxios';
 import { billboarddata } from '../store/modules/billboardAxios';
+import Footer from '../footer/Footer';
 
 const ItemInfoPage = memo(() => {
     const { chartid, listname } = useParams()
@@ -21,16 +22,20 @@ const ItemInfoPage = memo(() => {
         }
     }, [dispatch, listname]);
     const loading = useSelector(state => listname === 'kor' ? state.kordata.loading : state.billboarddata.loading)
-    if (loading) {
-        return <ItemInfoPagediv> <h2>불러오는중</h2></ItemInfoPagediv>
-    }
+    // if (loading) {
+    //     return <ItemInfoPagediv> <h2>불러오는중</h2></ItemInfoPagediv>
+    // }
     const list = useSelector(state => listname === 'kor' ? state.kordata.kodata : state.billboarddata.billboarddatas)
     console.log(list)
     console.log(loading)
 
-    const chkitem = list.find(i => i.rank === Number(chartid))
+    const chkitem = list.find(i => i.rank === Number(chartid));
+    
     const [info, setinfo] = useState(false)
-    const clickinfo = e => setinfo(!info)
+    const clickinfo = () => setinfo(!info)
+    if (loading) {
+        return <h2>불러오는중</h2>;
+    }
     return (
         <>
             <Iteminfobg onClick={clickinfo} style={{ display: info ? "block" : "none" }} >
@@ -67,6 +72,7 @@ const ItemInfoPage = memo(() => {
                         </div>
                     </ItemInfoPagediv>
                 </Inner>
+                <Footer />
             </Homecontent>
             <AudioBar />
             <NavBar />

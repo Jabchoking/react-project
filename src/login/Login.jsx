@@ -6,7 +6,7 @@ import {
   changeInputPassword,
   loginOnSubmit,
 } from "../redux/item/UserSlice";
-import { LoginFORM } from "../assets/css/MusicSubcss";
+import { LoginDivBG } from "../assets/css/MusicSubcss";
 
 const Login = () => {
   const { login_UserID, login_UserPassword } = useSelector(
@@ -35,40 +35,37 @@ const Login = () => {
     }
   };
   return (
-    <LoginFORM onSubmit={onloginSubmit}>
-      <input
-        type="text"
-        value={login_UserID}
-        onChange={(e) => dispatch(changeInputID(e.target.value))}
-        placeholder="아이디(이메일)"
-      />
-      <input
-        type="text"
-        value={login_UserPassword}
-        onChange={(e) => dispatch(changeInputPassword(e.target.value))}
-        placeholder="비밀번호"
-      />
-      <div className="login_submit">
-        <input type="checkbox" />
-        <label>아이디 저장</label>
-        <button type="submit" className="Login_Btn">
-          로그인
-        </button>
-      </div>
-      <p className="LoginJoin_btn">
-        <Link to="/Login/join">회원가입</Link>
-      </p>
-      <p className="Login_type">
-      <button >아이디로 로그인하기</button>
-      <button>이메일로 로그인하기</button>
-      </p>
-      <p>
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-      </p>
-    </LoginFORM>
+    <LoginDivBG>
+      <h2>LOGIN</h2>
+      <form onSubmit={onloginSubmit}>
+        <input
+          type="text"
+          value={login_UserID}
+          onChange={(e) => dispatch(changeInputID(e.target.value))}
+          placeholder="아이디(이메일)"
+        />
+        <input
+          type="text"
+          value={login_UserPassword}
+          onChange={(e) => dispatch(changeInputPassword(e.target.value))}
+          placeholder="비밀번호"
+        />
+        <div className="login_submit">
+          <input type="checkbox" />
+          <label>아이디 저장</label>
+          <button type="submit" className="Login_Btn">
+            로그인
+          </button>
+        </div>
+        <p className="LoginJoin_btn">
+          <Link to="/Login/join">회원가입</Link>
+        </p>
+        <p className="Login_type">
+          <button>아이디로 로그인하기</button>
+          <button>이메일로 로그인하기</button>
+        </p>
+      </form>
+    </LoginDivBG>
   );
 };
 

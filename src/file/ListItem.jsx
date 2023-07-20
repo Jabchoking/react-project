@@ -1,15 +1,32 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchData } from "../redux/item/listSlice";
+import { ListItemDiv } from "../assets/css/MusicSubcss";
 
 const ListItem = () => {
-  const { data } = useSelector((state) => state.data);
-  const { ListID } = useParams();
-  const ListSubitem = data.list.find((item) => item.id === Number(ListID));
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.data);
+  const { listID } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const ListSubitem = data.list.find((item) => item.id === Number(listID));
   const { id, title, days, editor, content, category } = ListSubitem;
 
+  const goBackToList = () => {
+    navigate("/list");
+  };
+
   return (
-    <div>
+    <ListQnaDiv>
       <h2>{title}</h2>
       <div className="item_textbox">
         <p>{category}</p>
@@ -19,7 +36,7 @@ const ListItem = () => {
       <div className="info">
         {ListSubitem.content1 && (
           <div className="itm_box">
-            <strong>{ListSubitem.content0}</strong>
+            <strong>({ListSubitem.content0})</strong>
             <p>{ListSubitem.content1}</p>
             <img src={ListSubitem.constent1_img} alt="" />
             <p>{ListSubitem.content2}</p>
@@ -38,8 +55,8 @@ const ListItem = () => {
         <p>{content}</p>
       </div>
 
-      <button>목록으로</button>
-    </div>
+      <button onClick={goBackToList}>목록으로</button>
+    </ListQnaDiv>
   );
 };
 

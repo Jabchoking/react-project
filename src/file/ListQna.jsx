@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Qna_Menu, fetchData } from "../redux/item/listSlice";
 import { useNavigate } from "react-router-dom";
-import { QnaUl, Qnatable, QnaButton } from "../assets/css/MusicSubcss";
+import { ListQnaDiv } from "../assets/css/MusicSubcss";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 
 const ListQna = () => {
@@ -29,13 +29,19 @@ const ListQna = () => {
   };
 
   return (
-    <>
-      <QnaUl>
-        <li onClick={() => dispatch(Qna_Menu("전체"))}>전체</li>
-        <li onClick={() => dispatch(Qna_Menu("개인정보"))}>개인정보</li>
-        <li onClick={() => dispatch(Qna_Menu("공지사항"))}>공지사항</li>
-      </QnaUl>
-      <Qnatable>
+    <ListQnaDiv>
+      <ul>
+        <li className="QnaMenu" onClick={() => dispatch(Qna_Menu("전체"))}>
+          전체 보기
+        </li>
+        <li className="QnaMenu" onClick={() => dispatch(Qna_Menu("개인정보"))}>
+          개인정보
+        </li>
+        <li className="QnaMenu" onClick={() => dispatch(Qna_Menu("공지사항"))}>
+          공지사항
+        </li>
+      </ul>
+      <table>
         <caption>QNA</caption>
         <colgroup>
           <col className="table_No" />
@@ -76,13 +82,12 @@ const ListQna = () => {
             </tr>
           ))}
         </tbody>
-      </Qnatable>
-      <QnaButton>
+      </table>
+      <p className="prev">
         <button onClick={prev}>목록으로 가기</button>{" "}
-      </QnaButton>
-    </>
+      </p>
+    </ListQnaDiv>
   );
-  <AiOutlineUp />;
 };
 
 export default ListQna;
