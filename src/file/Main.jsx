@@ -3,13 +3,14 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT, userAdd } from "../redux/item/UserSlice";
+import { Homecontent } from "../assets/css/MusicSub";
 
 const Main = () => {
   const [jsonData, setJsonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { isplay, user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -68,27 +69,29 @@ const Main = () => {
   };
   return (
     <>
-      <Link to="/list">리스트 이동</Link>
-      {user ? (
-        <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
-      ) : (
-        <Link to="/Login">로그인 이동</Link>
-      )}
-      {/*   <Link to="/storage">보관함 이동</Link> */}
-      {<p onClick={box}>보관함 이동</p>}
+      <Homecontent>
+        <Link to="/list">리스트 이동</Link>
+        {user ? (
+          <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
+        ) : (
+          <Link to="/Login">로그인 이동</Link>
+        )}
+        {/*   <Link to="/storage">보관함 이동</Link> */}
+        {<p onClick={box}>보관함 이동</p>}
 
-      <ul>
-        {jsonData.map((item) => (
-          <li key={item.rank}>
-            {item.name}
-            <br />
-            <button onClick={() => like(item.rank)}>찜하기</button>
-            <br />
-            {item.artist}
-            <img src={item.image} alt="" />
-          </li>
-        ))}
-      </ul>
+        <ul>
+          {jsonData.map((item) => (
+            <li key={item.rank}>
+              {item.name}
+              <br />
+              <button onClick={() => like(item.rank)}>찜하기</button>
+              <br />
+              {item.artist}
+              <img src={item.image} alt="" />
+            </li>
+          ))}
+        </ul>
+      </Homecontent>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { MusicDIV } from "../assets/css/MusicSubcss";
 
 const MusicPlayer = () => {
   const [currentTime, setCurrentTime] = useState(0);
@@ -18,9 +19,9 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div>
+    <MusicDIV>
       <audio
-        src="your-music-file-url"
+        src="https://docs.google.com/uc?export=open&id=14JlzHWUE2TqAsN237ft43SOw02xDPori"
         controls
         onTimeUpdate={handleTimeUpdate}
       />
@@ -30,7 +31,7 @@ const MusicPlayer = () => {
           style={{ width: `${(currentTime / duration) * 100}%` }}
         />
       </div>
-    </div>
+    </MusicDIV>
   );
 };
 

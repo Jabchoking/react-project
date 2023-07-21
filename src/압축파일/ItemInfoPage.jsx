@@ -76,9 +76,9 @@ const ItemInfoPage = memo(() => {
         setcomment({...comment , text:''})
     }
     const commentremvebut =e=>{
-        console.log(e)
-        dispatch(removecomment(e))
     }
+    console.log(commentlist.username)
+    console.log(user.login_UserID)
     return (
         <>
             <Iteminfobg
@@ -166,7 +166,7 @@ const ItemInfoPage = memo(() => {
                             </div>
                             <div className="commentlist">
                                 {commentlist? <ul>
-                                    {commentlist.map(i=><li> {i.text} { user.login_UserID===i.username? <button onClick={e=>commentremvebut(i)} >삭제</button> : <button>신고하기</button> }</li>)}
+                                    {commentlist.map(i=><li> {i.text} { user.login_UserID===i.username? <button onClick={e=>dispatch(removecomment(i))} >삭제</button> : <button>신고하기</button> }</li>)}
                                 </ul>
                                 :<h2>댓글이 없습니다 . 첫 댓글의 주인공이 되보세요!</h2> }
                             </div>

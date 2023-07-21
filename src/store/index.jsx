@@ -4,6 +4,7 @@ import billboarddata from './modules/billboardAxios'
 import dataReduer from "./modules/listSlice";
 import userReduer from "./modules/UserSlice";
 import SignUpReduer from "./modules/LoginSignUp";
+import comment from "./modules/comment";
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         data: dataReduer,
         user: userReduer,
         signup: SignUpReduer,
+        comment
     }
 })
