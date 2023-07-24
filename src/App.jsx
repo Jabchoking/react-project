@@ -8,15 +8,15 @@ import Searchpage from "./components/Searchpage";
 import List from "./file/List";
 import ListQna from "./file/ListQna";
 import ListItem from "./file/ListItem";
+import Main from "./file/Main";
 import Storage from "./user/storage";
 import Login from "./login/Login";
 import JoinLogin from "./login/JoinLogin";
 import JoinLoginTable from "./login/JoinLoginTable";
 import SignUpCompleted from "./login/SignUpCompleted";
 import FooterPolicy from "./footer/FooterPolicy";
-
 import NavBar from "./components/NavBar";
-import Playlist from "./components/Playlist";
+import LyricsDisplay from "./file/LyricsDisplay";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/">
+          <Route path="/" element={<Main />}>
             <Route index element={<Home />} />
             <Route path=":searchtext" element={<Searchpage />} />
           </Route>
@@ -47,8 +47,8 @@ function App() {
             <Route path="/Login/completed" element={<SignUpCompleted />} />
             <Route path="/Login/FooterPolicy" element={<FooterPolicy />} />
           </Route>
+          <Route path="/lyrics" element={<LyricsDisplay />} />
         </Routes>
-        <Playlist/>
       </BrowserRouter>
     </>
   );

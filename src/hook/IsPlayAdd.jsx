@@ -11,5 +11,6 @@ export const useIsfindList = (list, user) => {
     }
     return false;
   };
+
   return isfindList;
 };

@@ -5,13 +5,11 @@ import { AiOutlineInteraction } from "react-icons/ai";
 import { FaRandom } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import Smallitem from "./Smallitem";
-
-const Playlist = memo(() => {
+const Playlist = memo(({ toggle3 }) => {
   const { playListtog, user } = useSelector((state) => state.user);
   const [jsonData, setJsonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,23 +26,21 @@ const Playlist = memo(() => {
     };
     fetchData();
   }, []);
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
   return (
     <Playlistdiv className={playListtog ? "on" : ""}>
       <div className="cover">
-        {user && user.playList.length > 0 ? (
+        {user ? user.playList.length > 0 ? (
           <img src={user.playList[0].image} alt="" />
         ) : jsonData.length > 0 ? (
           <img src={jsonData[0].image} alt="" />
-        ) : null}
+        ) : null
+      :<h1  >로그인을 먼저 해주세요</h1>}
       </div>
       <div className="playmusiclist">
         <div className="playbutbox">
@@ -58,14 +54,16 @@ const Playlist = memo(() => {
             </h2>
           </div>
         </div>
+        {user?
         <ul>
           {user && user.playList.length > 0
             ? user.playList.map((item, idx) => <Smallitem z={item} key={idx} />)
             : jsonData.map((item, idx) => <Smallitem z={item} key={idx} />)}
         </ul>
+        :<h1>로그인을 먼저 해주세요</h1>
+        }
       </div>
     </Playlistdiv>
   );
 });
-
 export default Playlist;

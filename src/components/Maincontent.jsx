@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT, userAdd } from "../redux/item/UserSlice";
+import { Homecontent, Inner } from '../assets/css/MusicSub';
 
 const Maincontent = memo(() => {
 
@@ -66,32 +67,32 @@ const Maincontent = memo(() => {
             alert("로그인 후 이용 가능합니다.");
         }
     };
-
+    console.log(`뭔데이게`)
     return (
-        <>
-            <h2>메인화면 컨텐츠</h2>
-            <Link to="/list">리스트 이동</Link>
-            {user ? (
-                <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
-            ) : (
-                <Link to="/Login">로그인 이동</Link>
-            )}
-            {/*   <Link to="/storage">보관함 이동</Link> */}
-            {<p onClick={box}>보관함 이동</p>}
+            <Inner>
+                <h2>메인화면 컨텐츠</h2>
+                <Link to="/list">리스트 이동</Link>
+                {user ? (
+                    <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
+                ) : (
+                    <Link to="/Login">로그인 이동</Link>
+                )}
+                {/*   <Link to="/storage">보관함 이동</Link> */}
+                {<p onClick={box}>보관함 이동</p>}
 
-            <ul>
-                {jsonData.map((item) => (
-                    <li key={item.rank}>
-                        {item.name}
-                        <br />
-                        <button onClick={() => like(item.rank)}>찜하기</button>
-                        <br />
-                        {item.artist}
-                        <img src={item.image} alt="" />
-                    </li>
-                ))}
-            </ul>
-        </>
+                {/* <ul>
+                    {jsonData.map((item) => (
+                        <li key={item.rank}>
+                            {item.name}
+                            <br />
+                            <button onClick={() => like(item.rank)}>찜하기</button>
+                            <br />
+                            {item.artist}
+                            <img src={item.image} alt="" />
+                        </li>
+                    ))}
+                </ul> */}
+            </Inner>
     );
 });
 

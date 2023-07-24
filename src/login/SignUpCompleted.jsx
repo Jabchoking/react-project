@@ -4,6 +4,8 @@ import { LoginComplet } from "../assets/css/MusicSubcss";
 import { AiOutlineDownCircle } from "react-icons/ai";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
 
 const SignUpCompleted = () => {
   const navigate = useNavigate();
@@ -30,6 +32,8 @@ const SignUpCompleted = () => {
       </LoginComplet>
       <Homecontent>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
     </>
   );

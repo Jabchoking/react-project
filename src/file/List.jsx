@@ -9,10 +9,12 @@ import {
   setRandomUrls,
   changeInput,
   searchList,
-} from "../redux/item/listSlice";
+} from "../store/modules/listSlice";
 import { ListDiv } from "../assets/css/MusicSubcss";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
 
 const List = () => {
   const { data, randomUrls, searchTerm, filteredBySearch } = useSelector(
@@ -132,8 +134,9 @@ const List = () => {
       </ListDiv>
       <Homecontent>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
-
     </>
   );
 };

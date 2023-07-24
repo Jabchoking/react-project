@@ -5,15 +5,11 @@ const initialState = {
   isplay: false,
   login_UserID: "",
   login_UserPassword: "",
-  playListtog: false,
 };
 export const UserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    playListToggle(state, action) {
-      state.playListIsplay = !state.playListIsplay;
-    },
     changeInputID(state, action) {
       state.login_UserID = action.payload;
     },
@@ -28,7 +24,6 @@ export const UserSlice = createSlice({
           login_UserID: compare.UserID,
           login_UserPassword: compare.UserPassword,
           pick: [],
-          playList: [],
         };
         localStorage.setItem("user", JSON.stringify(state.user));
         state.isplay = true;
@@ -59,6 +54,5 @@ export const {
   loginOnSubmit,
   LOGOUT,
   userAdd,
-  playListToggle,
 } = UserSlice.actions;
 export default UserSlice.reducer;

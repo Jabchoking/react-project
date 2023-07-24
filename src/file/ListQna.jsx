@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Qna_Menu, fetchData } from "../redux/item/listSlice";
+import { Qna_Menu, fetchData } from "../store/modules/listSlice";
 import { useNavigate } from "react-router-dom";
 import { ListQnaDiv } from "../assets/css/MusicSubcss";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
 
 const ListQna = () => {
   const { data } = useSelector((state) => state.data);
@@ -99,6 +101,8 @@ const ListQna = () => {
       </ListQnaDiv>
       <Homecontent>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
     </>
   );

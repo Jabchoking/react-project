@@ -19,7 +19,6 @@ export const fetchData = createAsyncThunk("data/getData", async () => {
     console.log(error);
   }
 });
-
 export const searchList = createAsyncThunk("data/searchList", (searchTerm) => {
   return searchTerm;
 });

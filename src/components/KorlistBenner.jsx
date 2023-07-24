@@ -2,7 +2,6 @@ import React, { memo, useEffect, useState } from 'react';
 import { MusicListBennerdiv } from '../assets/css/MusicSub';
 import { useDispatch, useSelector } from 'react-redux';
 import { kordata, useswiper } from '../store/modules/kordataAxios';
-import axios from 'axios'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Benneritem from './Benneritem';
@@ -21,21 +20,6 @@ const KorlistBenner = memo(() => {
 
     const swiperdata = useSelector(state => state.kordata.korswiper);
 
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         const width = window.innerWidth;
-    //         if (width > 1400) {
-    //             setwsize(3);
-    //         } else {
-    //             setwsize(2);
-    //         }
-    //     };
-
-    //     window.addEventListener('resize', handleResize);
-    //     return () => {
-    //         window.removeEventListener('resize', handleResize);
-    //     };
-    // }, [wsize]);
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;

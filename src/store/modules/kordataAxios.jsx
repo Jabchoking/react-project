@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   kodata: [],
   korswiper: [],
+  randomdata:[],
   loading: true,
   state: null,
 };
@@ -42,6 +43,22 @@ const kordataslice = createSlice({
       });
       state.korswiper = totalarr;
     },
+    randomset(state) {
+      const { kodata } = state;
+      
+      // shuffleArray 함수 정의와 랜덤 데이터 생성
+      function shuffleArray(array) {
+        const shuffled = array.slice();
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      const randomData = shuffleArray(kodata).slice(0, 10);
+      state.randomdata = randomData;
+    },
   },
   extraReducers: (bulider) => {
     bulider
@@ -61,7 +78,7 @@ const kordataslice = createSlice({
   },
 });
 
-export const { useswiper } = kordataslice.actions;
+export const { useswiper , randomset } = kordataslice.actions;
 export default kordataslice.reducer;
 
 /* https://gist.githubusercontent.com/Jabchoking/89b047ed80935a36b3dd476b04a541ab/raw/9429041fd5beff9a47b9d048e7ef015260c28406/gistfile1.txt */

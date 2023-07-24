@@ -17,6 +17,7 @@ import Footer from "../footer/Footer";
 import { useIsfindList } from "../hook/IsPlayAdd";
 import { playListAdd } from "../store/modules/UserSlice";
 import { addcomment, removecomment } from "../store/modules/comment";
+import Commentitem from "./Commentitem";
 
 
 const ItemInfoPage = memo(() => {
@@ -25,8 +26,8 @@ const ItemInfoPage = memo(() => {
     const { chartid, listname } = useParams();
     const [heart, setheart] = useState(false)
     const [Dashon, setDashon] = useState(false)
-    const [comment , setcomment] = useState([])
-    const commentlist = useSelector(state=>state.comment.data)
+    const [comment, setcomment] = useState([])
+    const commentlist = useSelector(state => state.comment.data)
     const clickHeart = e => setheart(!heart)
     const clickDash = e => setDashon(!Dashon)
     useEffect(() => {
@@ -66,19 +67,19 @@ const ItemInfoPage = memo(() => {
         }
     };
 
-    const inputchk=e=>{
-        setcomment({name:chkitem.name , text: e.target.value , username : user.login_UserID })
+    const inputchk = e => {
+        setcomment({ name: chkitem.name, text: e.target.value, username: user.login_UserID })
         console.log(comment)
     }
-    const commentaddsubmit=e=>{
+    const commentaddsubmit = e => {
         e.preventDefault()
         dispatch(addcomment(comment))
-        setcomment({...comment , text:''})
+        setcomment({ ...comment, text: '' })
     }
-    const commentremvebut =e=>{
+    const commentremvebut = e => {
+        console.log(e)
+        dispatch(removecomment(e))
     }
-    console.log(commentlist.username)
-    console.log(user.login_UserID)
     return (
         <>
             <Iteminfobg
@@ -149,26 +150,32 @@ const ItemInfoPage = memo(() => {
                         <div className="commentbox">
                             <span>댓글</span>
                             <div className="commentinput" style={{ background: heart ? `none` : `#202020` }} >
-                                {!user ? (
-                                    <span>
-                                        <Link to="/Login" style={{color:`#FF0050`}} >로그인</Link>
+                                {user ?
+                                    !user.login_UserID ? (
+                                        <h5>
+                                            <Link to="/Login" style={{ color: `#FF0050` }} >로그인</Link>
+                                            을 해주세요.
+                                        </h5>
+                                    ) : (
+                                        <form onSubmit={commentaddsubmit}>
+                                            <input
+                                                type='text' value={comment.text} onChange={inputchk}
+                                                placeholder={`댓글을 입력해주세요`}
+                                                style={{ background: "none", border: "none" }}
+                                            />
+                                        </form>
+                                    )
+                                    : <h5>
+                                        <Link to="/Login" style={{ color: `#FF0050` }} >로그인</Link>
                                         을 해주세요.
-                                    </span>
-                                ) : (
-                                    <form onSubmit={commentaddsubmit}>
-                                    <input
-                                        type='text'value={comment.text} onChange={inputchk}
-                                        placeholder={`댓글을 입력해주세요`}
-                                        style={{ background: "none", border: "none" }}
-                                    />
-                                    </form>
-                                )}
+                                    </h5>
+                                }
                             </div>
                             <div className="commentlist">
-                                {commentlist? <ul>
-                                    {commentlist.map(i=><li> {i.text} { user.login_UserID===i.username? <button onClick={e=>dispatch(removecomment(i))} >삭제</button> : <button>신고하기</button> }</li>)}
+                                {commentlist.length ? <ul>
+                                    {commentlist.map((i,j) => <Commentitem key={j} i={i} user={user} commentremvebut={commentremvebut} /> )}
                                 </ul>
-                                :<h2>댓글이 없습니다 . 첫 댓글의 주인공이 되보세요!</h2> }
+                                    : <h2>댓글이 없습니다 . 첫 댓글의 주인공이 되보세요!</h2>}
                             </div>
                         </div>
                     </ItemInfoPagediv>

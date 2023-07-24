@@ -5,10 +5,12 @@ import {
   changeInputID,
   changeInputPassword,
   loginOnSubmit,
-} from "../redux/item/UserSlice";
+} from "../store/modules/UserSlice";
 import { LoginDivBG } from "../assets/css/MusicSubcss";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
 
 const Login = () => {
   const { login_UserID, login_UserPassword } = useSelector(
@@ -71,6 +73,8 @@ const Login = () => {
       </LoginDivBG>
       <Homecontent>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
     </>
   );

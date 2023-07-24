@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchData } from "../redux/item/listSlice";
+import { fetchData } from "../store/modules/listSlice";
 import { ListItemDiv } from "../assets/css/MusicSubcss";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
 
 const ListItem = () => {
   const dispatch = useDispatch();
@@ -65,6 +67,8 @@ const ListItem = () => {
       </ListItemDiv>
       <Homecontent>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
     </>
   );

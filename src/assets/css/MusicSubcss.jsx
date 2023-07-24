@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const ListDiv = styled.div`
-  width: 100%;
   height: 100%;
   background-color: #000;
-  h2 {
+  box-sizing: border-box;
+  overflow: hidden;
+  p h2 {
     font-size: 50px;
     text-align: center;
     padding: 80px;
@@ -70,7 +71,7 @@ export const ListDiv = styled.div`
     }
   }
   table {
-    margin: 80px auto;
+    margin: 0 auto;
     width: 60%;
     position: relative;
     left: 5%;
@@ -143,6 +144,8 @@ export const ListQnaDiv = styled.div`
   height: 100%;
   padding-left: 100px;
   background-color: #000;
+  overflow: hidden;
+
   ul {
     height: 100px;
     display: flex;
@@ -260,7 +263,7 @@ export const ListQnaDiv = styled.div`
       }
       ul.on {
         display: flex;
-        height: 120px;
+        height: 150px;
         padding: 50px 0;
       }
     }
@@ -290,6 +293,8 @@ export const LoginDivBG = styled.div`
   height: 100%;
   background-color: #000;
   padding: 100px 0;
+  overflow: hidden;
+
   h2 {
     font-size: 50px;
     font-weight: 700;
@@ -394,6 +399,8 @@ export const JoinConditionsBG = styled.div`
   background-color: #000;
   padding: 100px 0;
   margin: auto;
+  overflow: hidden;
+
   h2 {
     text-align: center;
     position: relative;
@@ -494,6 +501,8 @@ export const JoinTable = styled.div`
   background-color: #000;
   padding: 100px 0;
   margin: auto;
+  overflow: hidden;
+
   div {
     width: 900px;
     height: 100%;
@@ -593,6 +602,7 @@ export const LoginComplet = styled.div`
   width: 100%;
   height: 800px;
   background-color: #000;
+  overflow: hidden;
 
   div {
     padding: 50px 40px;
@@ -643,16 +653,18 @@ export const LoginComplet = styled.div`
   }
 `;
 export const StorageDiv = styled.div`
-  width: 1000px;
-  margin: 100px auto;
-  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  padding: 100px 0 50px 150px;
   position: relative;
   box-sizing: border-box;
   h2 {
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 700;
     text-align: left;
-    margin: 30px 0;
+    padding: 30px 0;
+    color: rgb(217, 217, 217);
   }
   .playList,
   .playList2 {
@@ -693,7 +705,7 @@ export const StorageDiv = styled.div`
     }
   }
   table {
-    width: 1000px;
+    width: 80%;
     text-align: left;
     margin: 50px 0;
     caption {
@@ -706,6 +718,9 @@ export const StorageDiv = styled.div`
           font-weight: 700;
           font-size: 14px;
         }
+        th:nth-child(3) {
+          text-align: center;
+        }
       }
     }
     .LOCAL_img {
@@ -714,7 +729,7 @@ export const StorageDiv = styled.div`
     tbody {
       tr {
         width: 70px;
-        border-bottom: 1px solid rgb(217, 217, 217);
+
         td {
           img {
             width: 50px;
@@ -729,74 +744,108 @@ export const StorageDiv = styled.div`
             color: #fff;
             font-weight: 700;
             font-size: 12px;
+            padding: 0;
+            text-align: left;
           }
           p {
             font-size: 16px;
             font-weight: 700;
           }
         }
+        td:nth-child(3) {
+          text-align: center;
+        }
       }
     }
   }
 `;
 export const ListItemDiv = styled.div`
-  width: 1400px;
-  margin: 100px auto;
-  position: relative;
-  text-align: center;
-  h2 {
-    font-size: 40px;
-    text-align: left;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgb(217, 217, 217);
-  }
-  .item_textbox {
-    display: flex;
-    height: 50px;
-    align-items: center;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    p {
-      margin-right: 20px;
-      color: lightgray;
-    }
-  }
-  .info {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  padding: 100px 0;
+  overflow: hidden;
+  div {
     width: 80%;
-    text-align: left;
+    margin: auto;
     position: relative;
-    padding: 50px 0;
-    div {
-      strong {
-        color: gray;
-        font-size: 12px;
-        display: block;
-        margin-bottom: 20px;
+    left: 3%;
+    text-align: center;
+    h2 {
+      font-size: 40px;
+      text-align: center;
+      position: relative;
+      left: 3%;
+      padding-bottom: 50px;
+      color: rgb(235, 235, 235);
+    }
+    .item_textbox {
+      display: flex;
+      height: 50px;
+      align-items: center;
+      width: 100%;
+      border-top: 3px solid rgb(235, 235, 235);
+      border-bottom: 1px solid rgb(51, 51, 51);
+      p {
+        margin-right: 20px;
+        color: lightgray;
+      }
+    }
+
+    .info {
+      width: 50%;
+      text-align: center;
+      padding: 50px 0;
+      img {
+        margin-bottom: 10px;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 80%;
+
+        strong {
+          color: rgb(235, 235, 235);
+          font-size: 12px;
+          display: block;
+          margin-bottom: 20px;
+        }
+        p {
+          font-size: 18px;
+          font-weight: 700;
+          margin: 20px 0;
+          color: #fff;
+        }
       }
       p {
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 18px;
         margin: 20px 0;
+        color: #fff;
       }
     }
-  }
-  .info::after {
-    content: "";
-    width: 1400px;
-    height: 1px;
-    background-color: rgb(51, 51, 51);
-    display: block;
-    position: absolute;
-    bottom: 0;
-  }
-  button {
-    width: 220px;
-    height: 60px;
-    background-color: #3f3fff;
-    border: none;
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    margin: 30px 0;
+
+    .button_onprev {
+      padding: 30px 0;
+      width: 100%;
+      position: relative;
+      left: 3%;
+      border-top: 1px solid rgb(51, 51, 51);
+      margin: auto;
+      button {
+        width: 240px;
+        height: 60px;
+        background-color: #3f3fff;
+        border: none;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+        position: absolute;
+        left: 52%;
+        transform: translateX(-50%);
+      }
+    }
   }
 `;
 export const FooterDiv = styled.div`
@@ -806,7 +855,6 @@ export const FooterDiv = styled.div`
   box-sizing: border-box;
   background-color: #111111;
   padding: 40px 25px 0 25px;
-  margin-bottom: 100px;
   z-index: 1;
   ul {
     display: flex;
@@ -826,4 +874,9 @@ export const FooterDiv = styled.div`
       }
     }
   }
+`;
+export const MusicDIV = styled.div`
+  background-color: #fff;
+  width: 100px;
+  height: 100px;
 `;

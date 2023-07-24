@@ -3,7 +3,12 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT, userAdd } from "../redux/item/UserSlice";
-import { Homecontent } from "../assets/css/MusicSub";
+import { Homecontent, Inner } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
+import Footer from "../footer/Footer";
+import KorRandombenner from "../components/KorRandombenner";
+import BillboradRandombenner from "../components/BillboradRandombenner";
 
 const Main = () => {
   const [jsonData, setJsonData] = useState([]);
@@ -68,8 +73,8 @@ const Main = () => {
     }
   };
   return (
-    <>
-      <Homecontent>
+    <Homecontent>
+      <Inner>
         <Link to="/list">리스트 이동</Link>
         {user ? (
           <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
@@ -78,21 +83,14 @@ const Main = () => {
         )}
         {/*   <Link to="/storage">보관함 이동</Link> */}
         {<p onClick={box}>보관함 이동</p>}
-
-        <ul>
-          {jsonData.map((item) => (
-            <li key={item.rank}>
-              {item.name}
-              <br />
-              <button onClick={() => like(item.rank)}>찜하기</button>
-              <br />
-              {item.artist}
-              <img src={item.image} alt="" />
-            </li>
-          ))}
-        </ul>
-      </Homecontent>
-    </>
+        <Link to={"/lyrics"}>가사</Link>
+        <KorRandombenner />
+        <BillboradRandombenner/>
+      </Inner>
+      <Footer />
+      <AudioBar />
+      <NavBar />
+    </Homecontent>
   );
 };
 

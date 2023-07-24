@@ -1,5 +1,5 @@
-import React, { memo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Listitem from './MusicListitem';
 import { Homecontent, Inner, MusicListul, Playpushbox } from '../assets/css/MusicSub';
@@ -8,26 +8,11 @@ import NavBar from './NavBar';
 import Footer from '../footer/Footer';
 import { AiFillCaretRight, AiOutlineShoppingCart } from 'react-icons/ai';
 import { FaRandom } from 'react-icons/fa'
-import { billboarddata } from '../store/modules/billboardAxios';
-import { kordata } from '../store/modules/kordataAxios';
 
 const MusicList = memo(() => {
     const { listname, text, type } = useParams()
-    const dispatch = useDispatch()
-    const loading = useSelector(state => listname === 'kor' ? state.kordata.loading : state.billboarddata.loading)
-    useEffect(() => {
-        console.log("작동");
-        if (listname === 'kor') {
-            dispatch(kordata());
-        } else {
-            dispatch(billboarddata());
-        }
-    }, [dispatch]);
     const list = useSelector(state => listname === `kor` ? state.kordata.kodata : state.billboarddata.billboarddatas)
     const listfilter = type === 'nop' ? list : list.filter(i => i[type].includes(text))
-    if (loading) {
-        return <h2>불러오는중</h2>;
-    }
 
     return (
         <>

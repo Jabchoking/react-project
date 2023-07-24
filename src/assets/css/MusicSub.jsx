@@ -89,13 +89,14 @@ export const Playlistdiv = styled.div`
   width: 100%;
   height: 90%;
   z-index: 15;
-  bottom: 0px;
+  bottom: -100%;
   left: 0px;
   display: flex;
-  animation: ${playListClose} 0.3s ease-in-out forwards;
+  animation: none;
+  transition: 0.5s ease-in-out;
   &.on {
     bottom: 100px;
-    animation: ${playListOpen} 0.3s ease-in-out forwards;
+    animation: ${playListOpen} 0.5s ease-in-out forwards;
   }
   ul {
     height: 90%;
@@ -138,7 +139,7 @@ export const MusicChartdiv = styled.div``;
 
 // 리스트 베너
 export const MusicListBennerdiv = styled.div`
-  height: 400px;
+  height: 450px;
   /* background-color: #333333; */
   a {
     color: white;
@@ -149,6 +150,8 @@ export const MusicListBennerdiv = styled.div`
 export const Benneritemli = styled.li``;
 // 베너 안쪽 개별 아이템
 export const Smallitemli = styled.li`
+padding: 10px;
+width: 92%;
   img {
     height: 60px;
     width: 60px;
@@ -160,7 +163,7 @@ export const Smallitemli = styled.li`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  &:hover::after {
+  :hover::after {
     display: block;
     position: absolute;
     top: 0;
@@ -170,7 +173,6 @@ export const Smallitemli = styled.li`
     background-color: white;
     /* opacity: 0.4; */
   }
-  margin: 10px;
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -196,7 +198,8 @@ export const Smallitemli = styled.li`
 `;
 // 간격잡아주는 inner
 export const Inner = styled.div`
-  padding: 50px;
+  padding: 40px;
+  padding-bottom: 150px;
 `;
 // 아이템 인포
 export const Iteminfobg = styled.div`
@@ -215,17 +218,17 @@ export const ItemInfoPagediv = styled.div`
     width: 180px;
     height: 180px;
   }
-  .butbox{
+  .butbox {
     display: flex;
     margin: 10px 0;
-    .typered{
+    .typered {
       background-color: #ff0050;
     }
-    .typebleck{
+    .typebleck {
       background-color: #222222;
     }
-    button{
-      color : white;
+    button {
+      color: white;
       padding: 0 20px;
       border: none;
       border-radius: 5px;
@@ -236,46 +239,55 @@ export const ItemInfoPagediv = styled.div`
       font-size: 16px;
       cursor: pointer;
     }
-    .Obox{
-      button{
-      border: 1px solid #999999;
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      font-size: 22px;
-      background: none;
-      color: #999999;
-      line-height: 10px;
-      padding: 0;
-  }
-}
-.clicklist{
-        position: relative;
+    .Obox {
+      button {
+        border: 1px solid #999999;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        font-size: 22px;
+        background: none;
+        color: #999999;
+        line-height: 10px;
+        padding: 0;
       }
-.dishul{
-          position: absolute;
-          width: 80px;
-          top: 10px;
-          left: 300px;
-          border-radius:15px;
-          background-color: #999999;
-        }
-  }
-.comentbox{
-  border-top:1px solid #222222;
-  padding: 50px 0;
-}
-.commentinput{
-    height: 50px;
-    border-radius:15px;
-    line-height: 50px;
-    padding-left: 20px;
-    input{
-      color:white;
+    }
+    .clicklist {
+      position: relative;
+    }
+    .dishul {
+      position: absolute;
+      width: 80px;
+      top: 10px;
+      left: 300px;
+      border-radius: 15px;
+      background-color: #999999;
     }
   }
-`;
+  .comentbox {
+    border-top: 1px solid #222222;
+    padding: 50px 0;
+  }
+  .commentinput {
+  height: 50px;
+  border-radius: 15px;
+  line-height: 50px;
+  padding-left: 20px;
 
+  input {
+    color: white;
+    font-size: 16px;
+    width: 95%;
+    border: none; /* 태두리 선 제거 */
+    outline: none; /* 포커스 시 나타나는 외곽선 제거 */
+    &:focus {
+      border: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+      outline: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+    }
+  }
+}
+
+`;
 
 export const Iteminfoitem = styled.div`
   position: fixed;
@@ -294,60 +306,98 @@ export const Iteminfoitem = styled.div`
     color: #999999;
   }
 `;
+// 인포 댓글
+export const Commentitemli = styled.li`
+  height: 85px;
+  margin: 5px 0;
+  border-bottom: 1px solid #222222;
+  padding: 15px;
+  img{
+    height: 30px;
+    width: 30px;
+    margin: 0 0 0 0;
+  }
+  .username {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-bottom: 15px;
+  }
+  .text {
+    font-size: 16px;
+    cursor: auto;
+  }
+  button { 
+    height: 20px;
+    padding: 0 5px;
+  }
+  .commentbottom{
+    display: flex;
+    justify-content:space-between;
+  }
+  button {
+    height: 25px;
+    background: none;
+    color : white;
+    border: 1px solid #222222;
+    padding: 0 10px;
+    border-radius: 12px;
+  }
+`
 // 더보기 음악 리스트
 export const MusicListul = styled.ul`
   background-color: #000;
   color: white;
-  .alllist{
+  .alllist {
     display: flex;
   }
-  .alllist span{
+  .alllist span {
     font-size: 16px;
     display: inline-block;
     margin-top: 18px;
   }
-  input[type=checkbox]{
-        display: none;
-      }
-input[type=checkbox] + label{
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border:2px solid #707070;
-        border-radius: 4px;
-        position: relative;
-        margin: 20px ;
-      }
-input[type=checkbox]:checked + label::after{
-        content:'✔';
-        font-size: 12px;
-        width: 15px;
-        height: 15px;
-        text-align: center;
-        position: absolute;
-        background-color: #ff0050;
-        left: 0;
-        top:0;
-        line-height: 12px;
-      }
+  input[type="checkbox"] {
+    display: none;
+  }
+  input[type="checkbox"] + label {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #707070;
+    border-radius: 4px;
+    position: relative;
+    margin: 20px;
+  }
+  input[type="checkbox"]:checked + label::after {
+    content: "✔";
+    font-size: 12px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    position: absolute;
+    background-color: #ff0050;
+    left: 0;
+    top: 0;
+    line-height: 12px;
+  }
 `;
 // 더보기 음악 리스트 아이템
 export const Listitemli = styled.li`
   height: 60px;
   width: 100%;
-  border-bottom: 1px solid #222222 ;
+  border-bottom: 1px solid #222222;
   padding: 10px 0;
-  h3{
+  h3 {
     margin-left: 20px;
     font-size: 16px;
     line-height: 60px;
   }
-  div{
+  div {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     width: 90%;
   }
-  &:hover{
+  &:hover {
     background-color: #222222;
   }
   img {
@@ -355,8 +405,8 @@ export const Listitemli = styled.li`
     height: 60px;
   }
   display: flex;
-  a{
-    color:white;
+  a {
+    color: white;
   }
 `;
 // 검색결과 페이지
@@ -365,21 +415,21 @@ export const Searchpagediv = styled.div`
 `;
 // 음악리스트에서 재생 / 재생목록 추가버튼 박스
 export const Playpushbox = styled.div`
-  padding-bottom: 40px ;
+  padding-bottom: 40px;
   border-bottom: 1px solid #222222;
-  h2{
+  h2 {
     margin-bottom: 20px;
   }
-  .butbox{
+  .butbox {
     display: flex;
-    .typered{
+    .typered {
       background-color: #ff0050;
     }
-    .typebleck{
+    .typebleck {
       background-color: #222222;
     }
-    button{
-      color : white;
+    button {
+      color: white;
       padding: 0 20px;
       border: none;
       border-radius: 5px;
@@ -389,5 +439,27 @@ export const Playpushbox = styled.div`
       line-height: 40px;
       font-size: 16px;
     }
+  }
+`;
+// 랜덤 배너
+export const Randombennerdiv=styled.div`
+  height: 400px;
+  margin-top: 100px ;
+`
+// 랜덤 아이탬
+export const Randomitemdiv = styled.div`
+  width: 100%;
+  
+  h3{
+    font-size: 22px;
+    font-weight: 300;
+  }
+  h4{
+    color: #555555;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  img{
+    width: 100%;
   }
 `

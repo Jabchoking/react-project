@@ -8,11 +8,13 @@ import {
   onSignUpSubmit,
   chingeselect,
   chingeREPASSWORD,
-} from "../redux/item/LoginSignUp";
+} from "../store/modules/LoginSignUp";
 import { Link, useNavigate } from "react-router-dom";
 import { JoinTable } from "../assets/css/MusicSubcss";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
 
 const JoinLoginTable = () => {
   const { UserID, UserPassword, eMail, phone, eMail_select, repassword } =
@@ -118,6 +120,8 @@ const JoinLoginTable = () => {
       </JoinTable>
       <Homecontent>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
     </>
   );

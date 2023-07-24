@@ -4,10 +4,10 @@ import axios from "axios";
 const initialState = {
   billboarddatas: [], // 빈 배열로 초기화
   billboardswiperarr: [],
+  billboardRandomdata:[],
   loading: true,
   state: null,
 };
-
 export const billboarddata = createAsyncThunk(
   "billboarddata/billboarddata",
   async () => {
@@ -46,6 +46,21 @@ const billboarddataslice = createSlice({
       });
       state.billboardswiperarr = totalarr;
     },
+    billboardRandomdset(state){
+      const { billboarddatas } = state;
+      
+      // shuffleArray 함수 정의와 랜덤 데이터 생성
+      function shuffleArray(array) {
+        const shuffled = array.slice();
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+      const randomData = shuffleArray(billboarddatas).slice(0, 10);
+      state.billboardRandomdata = randomData;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -66,5 +81,5 @@ const billboarddataslice = createSlice({
   },
 });
 
-export const { billboardswiper } = billboarddataslice.actions;
+export const { billboardswiper , billboardRandomdset } = billboarddataslice.actions;
 export default billboarddataslice.reducer;

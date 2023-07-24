@@ -1,22 +1,29 @@
 import React from "react";
-import styled from "styled-components";
 import { BsChevronRight } from "react-icons/Bs";
 import { MdOutlineQueueMusic } from "react-icons/Md";
 import { MdPersonAddAlt1 } from "react-icons/Md";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { StorageDiv } from "../assets/css/MusicSubcss";
 import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
+import AudioBar from "../components/AudioBar";
+import NavBar from "../components/NavBar";
+import { playListToggle } from "../store/modules/UserSlice";
 
 const Storage = () => {
   const { user } = useSelector((state) => state.user);
   const { login_UserID } = user;
+  const dispatch = useDispatch();
+  const toggle2 = () => {
+    dispatch(playListToggle());
+  };
+
   return (
     <>
       <Homecontent>
         <StorageDiv>
           <h2>플레이리스트</h2>
-          <div className="playList">
+          <div className="playList" onClick={toggle2}>
             <p className="storageBox">
               <MdOutlineQueueMusic />
             </p>
@@ -84,6 +91,8 @@ const Storage = () => {
           </div>
         </StorageDiv>
         <Footer />
+        <AudioBar />
+        <NavBar />
       </Homecontent>
     </>
   );
