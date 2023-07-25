@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { memo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Listitem from './MusicListitem';
 import { Homecontent, Inner, MusicListul, Playpushbox } from '../assets/css/MusicSub';
@@ -8,12 +8,27 @@ import NavBar from './NavBar';
 import Footer from '../footer/Footer';
 import { AiFillCaretRight, AiOutlineShoppingCart } from 'react-icons/ai';
 import { FaRandom } from 'react-icons/fa'
+import { kordata } from '../store/modules/kordataAxios';
+import { billboarddata } from '../store/modules/billboardAxios';
 
 const MusicList = memo(() => {
+    const dispatch = useDispatch();
     const { listname, text, type } = useParams()
     const list = useSelector(state => listname === `kor` ? state.kordata.kodata : state.billboarddata.billboarddatas)
     const listfilter = type === 'nop' ? list : list.filter(i => i[type].includes(text))
-
+    useEffect(()=>{
+        if (listname === "kor") {
+            dispatch(kordata());
+        } else {
+            dispatch(billboarddata());
+        }
+    },[dispatch, listname])
+    const loading = useSelector((state) =>
+        listname === "kor" ? state.kordata.loading : state.billboarddata.loading
+    );
+    if (loading) {
+        return <h2>불러오는중</h2>;
+    }
     return (
         <>
             <Homecontent>
@@ -33,9 +48,8 @@ const MusicList = memo(() => {
                     <MusicListul>
 
                             {listfilter.length !== 0 ?
-                                <li className='alllist' > <input type="checkbox" id='all' /><label for="all"></label><span> 전체 {listfilter.length} 곡 </span> </li>
+                                <li className='alllist' > <input type="checkbox" id='all' /><label htmlFor="all"></label><span> 전체 {listfilter.length} 곡 </span> </li>
                                 :''}
-
                         {
                             listfilter.length !== 0 ?
                                 listfilter.map((i, j) => <Listitem key={i.rank} i={i} j={j} listname={listname} rankor={type === 'nop'} />)

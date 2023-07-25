@@ -29,6 +29,7 @@ export const UserSlice = createSlice({
           login_UserPassword: compare.UserPassword,
           pick: [],
           playList: [],
+          playmusic: [],
         };
         localStorage.setItem("user", JSON.stringify(state.user));
         state.isplay = true;
@@ -55,7 +56,39 @@ export const UserSlice = createSlice({
       if (state.user.playList === undefined) {
         state.user.playList = [];
       }
-      state.user.playList.push(action.payload);
+      state.user.playmusic = [...action.payload];
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
+    addMusicplay(state, action) {
+      if (!state.user) {
+        return alert("로그인 후 이용해주세요");
+      }
+      state.user.playmusic = [];
+      state.user.playmusic.push(action.payload);
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
+    // 플레이리스트 추가
+    addplaylist(state,action){
+      if (!state.user) {
+        return alert("로그인 후 이용해주세요");
+      }
+      state.user.playList= [...state.user.playList , action.payload]
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
+    // 플레이리스트 제거
+    removeplaylist(state,action){
+      if (!state.user) {
+        return alert("로그인 후 이용해주세요");
+      }
+      state.user.playList = state.user.playList.filter(i=>i.name!==action.payload.name)
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
+    addplayListMusic(state, action) {
+      if (!state.user) {
+        return alert("로그인 후 이용해주세요");
+      }
+      state.user.playmusic = [];
+      state.user.playmusic = state.user.playmusic.concat(action.payload);
       localStorage.setItem("user", JSON.stringify(state.user));
     },
   },
@@ -68,5 +101,9 @@ export const {
   userAdd,
   playListToggle,
   playListAdd,
+  addMusicplay,
+  addplayListMusic,
+  addplaylist,
+  removeplaylist,
 } = UserSlice.actions;
 export default UserSlice.reducer;

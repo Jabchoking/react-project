@@ -13,14 +13,9 @@ const BillboradRandombenner = memo(() => {
     const loading = useSelector((state) => state.billboarddata.loading);
     useEffect(() => {
         dispatch(billboardRandomdset())
-    }, [dispatch,loading])
-    useEffect(() => {
-        if (!loading && randomdata.length > 0) {
-          console.log(randomdata);
-        }
-      }, [randomdata, loading]);
-      console.log(randomdata)
-      if (loading) {
+    }, [dispatch])
+    console.log(randomdata)
+    if (loading) {
         return <h2>불러오는중</h2>;
     }
     return (

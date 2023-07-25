@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 
 const KorRandombenner = memo(() => {
     const dispatch = useDispatch();
+    const kor= useSelector(state=>state.kordata.kodata)
     const randomdata = useSelector((state) => state.kordata.randomdata);
     const loading = useSelector((state) => state.kordata.loading);
     useEffect(() => {

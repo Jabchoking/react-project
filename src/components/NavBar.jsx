@@ -41,7 +41,7 @@ const NavBar = memo(() => {
       <ul>
         <li>
           <NavLink
-            to="/home"
+            to="/"
             className={({ isActive }) => (isActive ? "on" : "")}
           >
             홈
