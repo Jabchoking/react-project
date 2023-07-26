@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
   kodata: [],
   korswiper: [],
-  randomdata:[],
+  randomdata: [],
   loading: true,
   state: null,
 };
@@ -45,7 +45,7 @@ const kordataslice = createSlice({
     },
     randomset(state) {
       const { kodata } = state;
-      
+
       // shuffleArray 함수 정의와 랜덤 데이터 생성
       function shuffleArray(array) {
         const shuffled = array.slice();
@@ -78,7 +78,7 @@ const kordataslice = createSlice({
   },
 });
 
-export const { useswiper , randomset } = kordataslice.actions;
+export const { useswiper, randomset } = kordataslice.actions;
 export default kordataslice.reducer;
 
 /* https://gist.githubusercontent.com/Jabchoking/89b047ed80935a36b3dd476b04a541ab/raw/9429041fd5beff9a47b9d048e7ef015260c28406/gistfile1.txt */

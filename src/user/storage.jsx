@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsChevronRight } from "react-icons/Bs";
 import { MdOutlineQueueMusic } from "react-icons/Md";
 import { MdPersonAddAlt1 } from "react-icons/Md";
@@ -8,16 +8,30 @@ import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
-import { playListToggle } from "../store/modules/UserSlice";
+import {
+  addplaylist,
+  playListAdd,
+  playListToggle,
+} from "../store/modules/UserSlice";
+import { useIsfindList } from "../hook/IsPlayAdd";
 
 const Storage = () => {
-  const { user } = useSelector((state) => state.user);
-  const { login_UserID } = user;
+  const { user, login_UserID } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
   const toggle2 = () => {
     dispatch(playListToggle());
   };
-
+  const isSongAdded = useIsfindList(user.pick, user); // 커스텀 훅 호출
+  const findplayListadd = (id) => {
+    const playList = user.pick.find((song) => song.rank === id);
+    const isAdded = isSongAdded(id);
+    if (isAdded) {
+      alert("이미 추가된 노래입니다.");
+    } else {
+      dispatch(addplaylist(playList));
+    }
+  };
   return (
     <>
       <Homecontent>
@@ -82,7 +96,9 @@ const Storage = () => {
                         <p>{item.artist}</p>
                       </td>
                       <td>
-                        <button>플레이리스트에 추가</button>
+                        <button onClick={() => findplayListadd(item.rank)}>
+                          플레이리스트에 추가
+                        </button>
                       </td>
                     </tr>
                   ))}

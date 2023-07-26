@@ -723,12 +723,11 @@ export const StorageDiv = styled.div`
         }
       }
     }
-    .LOCAL_img {
-      width: 300px;
-    }
+
     tbody {
       tr {
         width: 70px;
+        white-space: nowrap;
 
         td {
           img {
@@ -874,9 +873,4 @@ export const FooterDiv = styled.div`
       }
     }
   }
-`;
-export const MusicDIV = styled.div`
-  background-color: #fff;
-  width: 100px;
-  height: 100px;
 `;

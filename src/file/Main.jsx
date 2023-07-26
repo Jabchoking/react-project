@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT, userAdd } from "../redux/item/UserSlice";
 import { Homecontent, Inner } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
@@ -43,49 +42,12 @@ const Main = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  /* 찜하기 버튼 눌렀을떄 동일 값이 있으면 알림 없으면 추가  */
-  const like = (rank) => {
-    if (jsonData.length === 0) {
-      return; // 데이터가 아직 로딩되지 않았으므로 처리 중단
-    }
 
-    const pick = jsonData.find((song) => song.rank === rank);
-
-    if (pick !== undefined) {
-      const isAlreadyAdded = user.pick.find(
-        (song) => JSON.stringify(song) === JSON.stringify(pick)
-      );
-      if (isAlreadyAdded) {
-        alert("이미 추가된 노래입니다.");
-      } else {
-        dispatch(userAdd(pick));
-      }
-    } else {
-      dispatch(userAdd(pick));
-    }
-  };
-  /* 해당 텍스트 클릭시 이동 / 만약 로그인 전이라면 이동 안되게 */
-  const box = () => {
-    if (user) {
-      navigate("/storage");
-    } else {
-      alert("로그인 후 이용 가능합니다.");
-    }
-  };
   return (
     <Homecontent>
       <Inner>
-        <Link to="/list">리스트 이동</Link>
-        {user ? (
-          <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
-        ) : (
-          <Link to="/Login">로그인 이동</Link>
-        )}
-        {/*   <Link to="/storage">보관함 이동</Link> */}
-        {<p onClick={box}>보관함 이동</p>}
-        <Link to={"/lyrics"}>가사</Link>
         <KorRandombenner />
-        <BillboradRandombenner/>
+        <BillboradRandombenner />
       </Inner>
       <Footer />
       <AudioBar />

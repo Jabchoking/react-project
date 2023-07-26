@@ -9,19 +9,17 @@ import Footer from "../footer/Footer";
 const MusicChart = memo(() => {
   return (
     <>
-      
-        <Homecontent>
-          <Inner>
-          <h2> 차트</h2>
-          <KorlistBenner />
-          <br />
-          <BillboardBenner />
-          </Inner>
-          <Footer />
-        </Homecontent>
-        <AudioBar />
-        <NavBar />
-      
+      <Homecontent>
+        <Inner>
+        <h2> 차트</h2>
+        <KorlistBenner />
+        <br />
+        <BillboardBenner />
+        </Inner>
+        <Footer />
+      </Homecontent>
+      <AudioBar />
+      <NavBar />
     </>
   );
 });

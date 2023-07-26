@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
   billboarddatas: [], // 빈 배열로 초기화
   billboardswiperarr: [],
-  billboardRandomdata:[],
+  billboardRandomdata: [],
   loading: true,
   state: null,
 };
@@ -46,9 +46,8 @@ const billboarddataslice = createSlice({
       });
       state.billboardswiperarr = totalarr;
     },
-    billboardRandomdset(state){
+    billboardRandomdset(state) {
       const { billboarddatas } = state;
-      
       // shuffleArray 함수 정의와 랜덤 데이터 생성
       function shuffleArray(array) {
         const shuffled = array.slice();
@@ -60,7 +59,7 @@ const billboarddataslice = createSlice({
       }
       const randomData = shuffleArray(billboarddatas).slice(0, 10);
       state.billboardRandomdata = randomData;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -81,5 +80,6 @@ const billboarddataslice = createSlice({
   },
 });
 
-export const { billboardswiper , billboardRandomdset } = billboarddataslice.actions;
+export const { billboardswiper, billboardRandomdset } =
+  billboarddataslice.actions;
 export default billboarddataslice.reducer;

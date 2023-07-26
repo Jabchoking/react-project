@@ -7,6 +7,7 @@ import {
 } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { BsCaretRightFill } from "react-icons/Bs";
 
 const Smallitem = memo(({ z }) => {
   const { user } = useSelector((state) => state.user);
@@ -45,6 +46,7 @@ const Smallitem = memo(({ z }) => {
           <NavLink to={`/chart/${listname}/${z.artist}/${`artist`}`}>
             {z.artist}
           </NavLink>
+          
         </h4>
       </div>
     </Smallitemli>

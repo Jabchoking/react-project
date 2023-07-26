@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" >
+          <Route path="/">
             <Route index element={<Home />} />
             <Route path=":searchtext" element={<Searchpage />} />
           </Route>

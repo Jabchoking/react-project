@@ -29,6 +29,7 @@ export const NavBardiv = styled.div`
   height: 100%;
   width: 250px;
   font-size: 20px;
+  h2 { font-size: 20px;}
   a {
     color: white;
     font-size: 20px;
@@ -54,6 +55,18 @@ export const NavBardiv = styled.div`
       border: 1px solid #043e69;
     }
   }
+  ul {
+    li {
+      button {
+        border: none;
+        background-color: transparent;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 700;
+        padding: 0;
+      }
+    }
+  }
 `;
 // 오디오 바
 export const AudioBardiv = styled.div`
@@ -65,6 +78,66 @@ export const AudioBardiv = styled.div`
   bottom: 0;
   left: 0;
   z-index: 15;
+  padding:20px 0 0 600px;
+  .inst {
+    position: absolute;
+    left: 280px;
+    top: 35px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    
+    img {
+      height: 50px;
+    }
+    span {
+      font-size: 20px;
+      font-weight: 700;
+      padding-left: 20px;
+      position: absolute;
+      top:25%;
+    }
+  }
+  div {
+    z-index:50;
+    width: 100%;
+    background-color: #191919;
+
+    .rhap_container {
+      width: 24%;
+      z-index: 16;
+      .rhap_volume-bar {
+        background-color: #202020;
+      }
+      .rhap_volume-indicator {
+        width: 20px;
+        height: 20px;
+        background-color: #000;
+        box-shadow: none;
+        transform: translateY(-20%);
+      }
+      .rhap_download-progress {
+        background-color: #202020 !important;
+      }
+      .rhap_progress-bar {
+        background-color: #202020 !important;
+      }
+      .rhap_progress-filled {
+        background-color: #202020 !important;
+      }
+      .rhap_progress-indicator {
+        width: 20px;
+        height: 20px;
+        box-shadow: none;
+        background-color: #000;
+        z-index:70;
+      }
+    }
+  }
+ 
+  .audioPlay {
+    position: relative;
+  }
 `;
 const playListOpen = keyframes`
   from {
@@ -74,14 +147,7 @@ const playListOpen = keyframes`
     transform: translateY(0);
   }
 `;
-const playListClose = keyframes`
-  form{
-    transform: translateY(0);
-  }
-  to{
-    transform: translateY(100%);
-  }
-`;
+
 // 플레이 리스트
 export const Playlistdiv = styled.div`
   background-color: #111111;
@@ -89,7 +155,7 @@ export const Playlistdiv = styled.div`
   width: 100%;
   height: 90%;
   z-index: 15;
-  bottom: -100%;
+  bottom: -200%;
   left: 0px;
   display: flex;
   animation: none;
@@ -117,20 +183,23 @@ export const Playlistdiv = styled.div`
   }
   .playlistbut {
     display: flex;
-    width: 70px;
-    justify-content: space-between;
+    width: 100px;
+    justify-content: space-around;
     font-size: 20px;
+    h2 {
+      margin-right: 30px;
+    }
   }
+
   .playmusiclist {
     border-left: 1px solid #191919;
     display: block;
-    height: 100%;
     width: 600px;
     color: white;
     padding: 30px;
     padding-top: 30px;
     font-size: 20px;
-    z-index: 1;
+    z-index: 2;
   }
   box-sizing: border-box;
 `;
@@ -139,7 +208,7 @@ export const MusicChartdiv = styled.div``;
 
 // 리스트 베너
 export const MusicListBennerdiv = styled.div`
-  height: 450px;
+  height: 400px;
   /* background-color: #333333; */
   a {
     color: white;
@@ -150,8 +219,6 @@ export const MusicListBennerdiv = styled.div`
 export const Benneritemli = styled.li``;
 // 베너 안쪽 개별 아이템
 export const Smallitemli = styled.li`
-padding: 10px;
-width: 92%;
   img {
     height: 60px;
     width: 60px;
@@ -163,7 +230,8 @@ width: 92%;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  :hover::after {
+
+  &:hover::after {
     display: block;
     position: absolute;
     top: 0;
@@ -173,6 +241,7 @@ width: 92%;
     background-color: white;
     /* opacity: 0.4; */
   }
+  margin: 10px;
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -198,8 +267,8 @@ width: 92%;
 `;
 // 간격잡아주는 inner
 export const Inner = styled.div`
-  padding: 40px;
-  padding-bottom: 150px;
+padding: 40px;
+padding-bottom: 150px;
 `;
 // 아이템 인포
 export const Iteminfobg = styled.div`
@@ -214,81 +283,79 @@ export const Iteminfobg = styled.div`
 `;
 // 인포 컨텐츠
 export const ItemInfoPagediv = styled.div`
-  img {
-    width: 180px;
-    height: 180px;
+img {
+  width: 180px;
+  height: 180px;
+}
+.butbox {
+  display: flex;
+  margin: 10px 0;
+  .typered {
+    background-color: #ff0050;
   }
-  .butbox {
-    display: flex;
-    margin: 10px 0;
-    .typered {
-      background-color: #ff0050;
-    }
-    .typebleck {
-      background-color: #222222;
-    }
-    button {
-      color: white;
-      padding: 0 20px;
-      border: none;
-      border-radius: 5px;
-      height: 40px;
-      /* text-align: center; */
-      margin-right: 10px;
-      line-height: 40px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .Obox {
-      button {
-        border: 1px solid #999999;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        font-size: 22px;
-        background: none;
-        color: #999999;
-        line-height: 10px;
-        padding: 0;
-      }
-    }
-    .clicklist {
-      position: relative;
-    }
-    .dishul {
-      position: absolute;
-      width: 80px;
-      top: 10px;
-      left: 300px;
-      border-radius: 15px;
-      background-color: #999999;
-    }
+  .typebleck {
+    background-color: #222222;
   }
-  .comentbox {
-    border-top: 1px solid #222222;
-    padding: 50px 0;
-  }
-  .commentinput {
-  height: 50px;
-  border-radius: 15px;
-  line-height: 50px;
-  padding-left: 20px;
-
-  input {
+  button {
     color: white;
+    padding: 0 20px;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    /* text-align: center; */
+    margin-right: 10px;
+    line-height: 40px;
     font-size: 16px;
-    width: 95%;
-    border: none; /* 태두리 선 제거 */
-    outline: none; /* 포커스 시 나타나는 외곽선 제거 */
-    &:focus {
-      border: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
-      outline: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+    cursor: pointer;
+  }
+  .Obox {
+    button {
+      border: 1px solid #999999;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      font-size: 22px;
+      background: none;
+      color: #999999;
+      line-height: 10px;
+      padding: 0;
     }
+  }
+  .clicklist {
+    position: relative;
+  }
+  .dishul {
+    position: absolute;
+    width: 80px;
+    top: 10px;
+    left: 300px;
+    border-radius: 15px;
+    background-color: #999999;
   }
 }
-
+.comentbox {
+  border-top: 1px solid #222222;
+  padding: 50px 0;
+}
+.commentinput {
+height: 50px;
+border-radius: 15px;
+line-height: 50px;
+padding-left: 20px;
+​
+input {
+  color: white;
+  font-size: 16px;
+  width: 95%;
+  border: none; /* 태두리 선 제거 */
+  outline: none; /* 포커스 시 나타나는 외곽선 제거 */
+  &:focus {
+    border: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+    outline: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+  }
+}
+}
 `;
-
 export const Iteminfoitem = styled.div`
   position: fixed;
   background-color: #222222;
@@ -312,7 +379,7 @@ export const Commentitemli = styled.li`
   margin: 5px 0;
   border-bottom: 1px solid #222222;
   padding: 15px;
-  img{
+  img {
     height: 30px;
     width: 30px;
     margin: 0 0 0 0;
@@ -327,23 +394,23 @@ export const Commentitemli = styled.li`
     font-size: 16px;
     cursor: auto;
   }
-  button { 
+  button {
     height: 20px;
     padding: 0 5px;
   }
-  .commentbottom{
+  .commentbottom {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
   }
   button {
     height: 25px;
     background: none;
-    color : white;
+    color: white;
     border: 1px solid #222222;
     padding: 0 10px;
     border-radius: 12px;
   }
-`
+`;
 // 더보기 음악 리스트
 export const MusicListul = styled.ul`
   background-color: #000;
@@ -462,4 +529,4 @@ export const Randomitemdiv = styled.div`
   img{
     width: 100%;
   }
-`
+  `

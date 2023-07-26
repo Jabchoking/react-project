@@ -56,9 +56,10 @@ export const UserSlice = createSlice({
       if (state.user.playList === undefined) {
         state.user.playList = [];
       }
-      state.user.playmusic = [...action.payload];
+      state.user.playList = [...action.payload];
       localStorage.setItem("user", JSON.stringify(state.user));
     },
+
     addMusicplay(state, action) {
       if (!state.user) {
         return alert("로그인 후 이용해주세요");
@@ -68,19 +69,22 @@ export const UserSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     // 플레이리스트 추가
-    addplaylist(state,action){
+    addplaylist(state, action) {
       if (!state.user) {
         return alert("로그인 후 이용해주세요");
       }
-      state.user.playList= [...state.user.playList , action.payload]
+
+      state.user.playList.push(action.payload);
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     // 플레이리스트 제거
-    removeplaylist(state,action){
+    removeplaylist(state, action) {
       if (!state.user) {
         return alert("로그인 후 이용해주세요");
       }
-      state.user.playList = state.user.playList.filter(i=>i.name!==action.payload.name)
+      state.user.playList = state.user.playList.filter(
+        (i) => i.name !== action.payload.name
+      );
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     addplayListMusic(state, action) {
