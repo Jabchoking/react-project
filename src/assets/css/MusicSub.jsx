@@ -509,6 +509,49 @@ export const Playpushbox = styled.div`
     }
   }
 `;
+// 홈 상단컨텐츠
+export const TodayRecommendationDIV = styled.div`
+  width: 100%;
+  margin: auto;
+  height: 350px;
+  display: flex;
+  background-color: rgba(214, 214, 214, 0.5);
+  cursor: pointer;
+  img {
+    width: 40%;
+    height: 350px;
+    background-size: cover;
+  }
+  div {
+    width: 70%;
+    font-size: 25px;
+    padding: 5px 0 0 30px;
+    position: relative;
+    box-sizing: border-box;
+    span {
+      font-size: 18px;
+      display: block;
+    }
+    strong {
+      font-size: 40px;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+    b {
+      font-size: 40px;
+      font-weight: 600;
+      display: block;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    p:last-child {
+      position: absolute;
+      bottom: 10px;
+    }
+  }
+`;
 // 랜덤 배너
 export const Randombennerdiv=styled.div`
   height: 400px;

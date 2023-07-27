@@ -9,39 +9,16 @@ import BillboradRandombenner from "../components/BillboradRandombenner";
 import { useDispatch } from "react-redux";
 import { kordata } from "../store/modules/kordataAxios";
 import { billboarddata } from "../store/modules/billboardAxios";
+import TodayRecommend from "../components/TodayRecommend";
 
 const Home = memo(() => {
   const dispatch=useDispatch()
-  const [jsonData, setJsonData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   dispatch(kordata())
   dispatch(billboarddata())
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://raw.githubusercontent.com/KoreanThinker/billboard-json/main/billboard-hot-100/recent.json"
-        );
-        setJsonData(response.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setError(error);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
   return (
     <Homecontent>
       <Inner>
+        <TodayRecommend/>
         <KorRandombenner />
         <BillboradRandombenner />
       </Inner>

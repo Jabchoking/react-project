@@ -18,7 +18,6 @@ import { useIsfindList } from "../hook/IsPlayAdd";
 const Storage = () => {
   const { user, login_UserID } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
   const toggle2 = () => {
     dispatch(playListToggle());
   };
@@ -32,6 +31,22 @@ const Storage = () => {
       dispatch(addplaylist(playList));
     }
   };
+  // 07.27 일자 추가분
+  const userinfo = useSelector(state=> state.userinfo.data)
+  const loguser = userinfo.filter(i => i.user === user.login_UserID);
+  const kordata = useSelector(state=> state.kordata.kodata)
+  const billboradData = useSelector(state=>state.billboarddata.billboarddatas)
+  if(billboradData&&kordata){
+    const comparisonList = loguser[0].like.flatMap((likedItem) => {
+      const matchedKorData = kordata.filter((data) => data.name === likedItem.name);
+      const matchedBillboradData = billboradData.filter((data) => data.name === likedItem.name);
+    
+      return [...matchedKorData, ...matchedBillboradData];
+    });
+    console.log(comparisonList)
+  }
+
+
   return (
     <>
       <Homecontent>

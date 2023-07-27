@@ -32,10 +32,12 @@ import Commentitem from "./Commentitem";
 import KorRandombenner from "./KorRandombenner";
 import BillboradRandombenner from "./BillboradRandombenner";
 import LyricsDisplay from "../file/LyricsDisplay";
+import { addinfoplaylist, clicklike } from "../store/modules/userinfo";
 
 const ItemInfoPage = memo(() => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const userinfo = useSelector(state=> state.userinfo.data)
   const { chartid, listname } = useParams();
   const [heart, setheart] = useState(false);
   const [Dashon, setDashon] = useState(false);
@@ -70,15 +72,7 @@ const ItemInfoPage = memo(() => {
   }
   /* 사용자 정의 hook/ IsPlayAdd 실행해서 해당 내용 playList객체에 저장 */
   const isSongAdded = useIsfindList(list, user); // 커스텀 훅 호출
-  const findplayListadd = (id) => {
-    const playList = list.find((song) => song.rank === id);
-    const isAdded = isSongAdded(id);
-    if (isAdded) {
-      alert("이미 추가된 노래입니다.");
-    } else {
-      dispatch(addplaylist(playList));
-    }
-  };
+
   const like = (rank) => {
     if (list.length === 0) {
       return; // 데이터가 아직 로딩되지 않았으므로 처리 중단
@@ -120,6 +114,35 @@ const ItemInfoPage = memo(() => {
     const selectMusic = list.find((item) => item.rank === id);
     dispatch(addMusicplay(selectMusic));
   };
+
+// 이하 07 . 27 일자 에 추가 교체한 함수들
+  // 조건 확인 함수
+const isLiked = () => {
+  // user.login_UserID와 userinfo 배열의 user 속성 비교
+  const foundUser = userinfo.find((item) => item.user === user.login_UserID);
+  
+  if (foundUser) {
+    // 사용자를 찾았을 경우 해당 사용자의 like 배열에서 chkitem.name 검색
+    const isNameLiked = foundUser.like.includes(chkitem.name);
+    return isNameLiked; // true 또는 false 반환
+  } else {
+    return false; // 사용자를 찾지 못한 경우 false 반환
+  }
+};
+const likeitem = {user:user.login_UserID , like : chkitem.name}
+
+  // 플레이리스트에 추가버튼 함수
+  const add = () => {
+    if(user){
+      console.log('작동?')
+      const item = {user:user.login_UserID , name:chkitem.name}
+      dispatch(addinfoplaylist(item));
+      alert(`${user.login_UserID} 님의 플레이리스트에 추가되었습니다 !`)
+    }else{
+      alert(`${<Link to={`/Login`} >`로그인`</Link>}을 먼저 해주세요`)
+    }
+  };
+
   return (
     <>
       <Iteminfobg
@@ -173,16 +196,14 @@ const ItemInfoPage = memo(() => {
                   재생
                 </button>
                 <button className="typebleck">MP3구매</button>
-                <button
-                  className="typebleck"
-                  onClick={() => findplayListadd(chkitem.rank)}
-                >
+                <button className="typebleck"
+                  onClick={add}>
                   <AiOutlineEdit />
                   플레이리스트 추가
                 </button>
                 <div className="Obox">
-                  <button onClick={() => like(chkitem.rank)}>
-                    {heart ? (
+                  <button onClick={() => dispatch(clicklike(likeitem))}>
+                    {isLiked() ? (
                       <AiFillHeart
                         onClick={clickHeart}
                         style={{ color: `#ff0050` }}
