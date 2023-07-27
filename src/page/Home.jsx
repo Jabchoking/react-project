@@ -1,23 +1,22 @@
 import React, { memo,useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { Homecontent, Inner } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
 import Footer from "../footer/Footer";
 import KorRandombenner from "../components/KorRandombenner";
 import BillboradRandombenner from "../components/BillboradRandombenner";
+import { useDispatch } from "react-redux";
+import { kordata } from "../store/modules/kordataAxios";
+import { billboarddata } from "../store/modules/billboardAxios";
 
 const Home = memo(() => {
+  const dispatch=useDispatch()
   const [jsonData, setJsonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+  dispatch(kordata())
+  dispatch(billboarddata())
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,15 +33,12 @@ const Home = memo(() => {
     };
     fetchData();
   }, []);
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
   return (
     <Homecontent>
       <Inner>

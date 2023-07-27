@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { memo,useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT, userAdd } from "../store/modules/UserSlice";
 import { Homecontent, Inner } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
 import Footer from "../footer/Footer";
 import KorRandombenner from "../components/KorRandombenner";
 import BillboradRandombenner from "../components/BillboradRandombenner";
-import KorlistBenner from "../components/KorlistBenner";
-import BillboardBenner from "../components/BillboardBenner";
+
+const Maincontent = memo(() => {
+  
+
 
   useEffect(() => {
     const [jsonData, setJsonData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,18 +47,11 @@ import BillboardBenner from "../components/BillboardBenner";
   }
 
   return (
-    <Homecontent>
-      <Inner>
-        {/* <KorlistBenner /> */}
+      <>
         <KorRandombenner />
-        {/* <BillboardBenner /> */}
         <BillboradRandombenner />
-      </Inner>
-      <Footer />
-      <AudioBar />
-      <NavBar />
-    </Homecontent>
+      </>
   );
 });
-
+});
 export default Maincontent;

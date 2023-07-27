@@ -12,12 +12,9 @@ const KorRandombenner = memo(() => {
   const dispatch = useDispatch();
   const randomdata = useSelector((state) => state.kordata.randomdata);
   useEffect(() => {
-    console.log(`작동`)
-    // dispatch(kordata());
-    dispatch(randomset());
+    setTimeout(()=>{dispatch(randomset())},5)
   }, [dispatch]);
   const loading = useSelector((state) => state.kordata.loading);
-  console.log(randomdata)
   if (loading) {
     return <h2>불러오는중</h2>;
   }

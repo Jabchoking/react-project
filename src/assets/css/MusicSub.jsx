@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 export const Homecontent = styled.div`
   display: block;
   margin-left: 250px;
+  margin-bottom: 120px;
   background-color: #000000;
   h2 {
     font-size: 30px;

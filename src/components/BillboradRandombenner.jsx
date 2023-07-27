@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 const BillboradRandombenner = memo(() => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(billboardRandomdset())
+    setTimeout(()=>{dispatch(billboardRandomdset())},5)
   }, [dispatch]);
   const billboardRandomdata = useSelector(
     (state) => state.billboarddata.billboardRandomdata);
