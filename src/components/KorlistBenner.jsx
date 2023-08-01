@@ -9,7 +9,6 @@ import { NavLink } from "react-router-dom";
 
 const KorlistBenner = memo(() => {
   const dispatch = useDispatch();
-  const [wsize, setwsize] = useState(3);
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(kordata());
@@ -20,6 +19,28 @@ const KorlistBenner = memo(() => {
 
   const swiperdata = useSelector((state) => state.kordata.korswiper);
 
+  const getInitialSize = () => {
+    return window.innerWidth <= 1400 ? 2 : 3;
+  };
+
+  const [wsize, setwsize] = useState(getInitialSize());
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width > 1400) {
+        setwsize(3);
+      } else {
+        setwsize(2);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [wsize]);
+  
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;

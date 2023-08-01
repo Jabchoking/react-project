@@ -16,6 +16,9 @@ import { Homecontent } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const List = () => {
   const { data, randomUrls, searchTerm, filteredBySearch } = useSelector(
     (state) => state.data
@@ -26,6 +29,14 @@ const List = () => {
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
   const filteredList = data.filtered1 || data.list;
   /* json파일에서 랜덤한 객체 값 가져오기 */
@@ -92,7 +103,11 @@ const List = () => {
           <tbody>
             {filteredBySearch.length > 0
               ? filteredBySearch.map((item, idx) => (
-                  <tr key={idx}>
+                  <tr
+                    key={idx}
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="top-bottom"
+                  >
                     <td>{item.category}</td>
                     <td>
                       <Link to={`/list/${item.id}`}>{item.title}</Link>
@@ -102,7 +117,11 @@ const List = () => {
                   </tr>
                 ))
               : filteredList.map((item) => (
-                  <tr key={item.id}>
+                  <tr
+                    key={item.id}
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="top-bottom"
+                  >
                     <td>{item.category}</td>
                     <td>
                       <Link to={`/list/${item.id}`}>{item.title}</Link>
@@ -112,7 +131,11 @@ const List = () => {
                   </tr>
                 ))}
             {randomUrls.map((item, idx) => (
-              <tr key={idx}>
+              <tr
+                key={idx}
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
                 <td>{item.category}</td>
                 <td>
                   <Link to={`/list/${item.id}`}>{item.title}</Link>

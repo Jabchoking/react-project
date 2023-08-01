@@ -5,6 +5,7 @@ export const ListDiv = styled.div`
   background-color: #000;
   box-sizing: border-box;
   overflow: hidden;
+
   p h2 {
     font-size: 50px;
     text-align: center;
@@ -95,7 +96,7 @@ export const ListDiv = styled.div`
           text-align: left;
           vertical-align: middle;
           font-size: 20px;
-          border-bottom: 1px solid rgb(235, 235, 235);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
           color: rgb(217, 217, 217);
           a {
             font-size: 20px;
@@ -704,8 +705,10 @@ export const StorageDiv = styled.div`
       font-weight: normal;
     }
   }
-  table {
-    width: 80%;
+  .table1,
+  .table2 {
+    width: 90%;
+    height: 100%;
     text-align: left;
     margin: 50px 0;
     caption {
@@ -717,6 +720,7 @@ export const StorageDiv = styled.div`
           width: 100px;
           font-weight: 700;
           font-size: 14px;
+          display: none;
         }
         th:nth-child(3) {
           text-align: center;
@@ -726,34 +730,32 @@ export const StorageDiv = styled.div`
 
     tbody {
       tr {
-        width: 70px;
+        width: 80px;
         white-space: nowrap;
-
-        td {
-          img {
-            width: 50px;
-            height: 50px;
-            vertical-align: middle;
-          }
-          button {
-            width: 140px;
-            height: 50px;
-            background-color: #000;
-            border: 1px solid #000;
-            color: #fff;
-            font-weight: 700;
-            font-size: 12px;
-            padding: 0;
-            text-align: left;
-          }
-          p {
-            font-size: 16px;
-            font-weight: 700;
-          }
+        height: 80px;
+        img {
+          width: 50px;
+          height: 50px;
+          vertical-align: middle;
         }
-        td:nth-child(3) {
+        button {
+          width: 140px;
+          height: 50px;
+          background-color: #000;
+          border: 1px solid #202020;
+          color: #fff;
+          font-weight: 700;
+          font-size: 12px;
+          padding: 0;
           text-align: center;
         }
+        p {
+          font-size: 16px;
+          font-weight: 700;
+        }
+      }
+      td:nth-child(3) {
+        text-align: center;
       }
     }
   }
@@ -873,4 +875,115 @@ export const FooterDiv = styled.div`
       }
     }
   }
+`;
+export const Membership = styled.div`
+  width: 60%;
+  margin: auto;
+  h2 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+    margin: 50px 0;
+  }
+  h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+    margin: 80px 0;
+  }
+  .textLi {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0;
+    li {
+      font-size: 15px;
+      font-weight: normal;
+      border: 1px solid red;
+      border-radius: 20px;
+      list-style-type: none;
+      strong {
+        display: block;
+      }
+      span {
+        display: inline;
+        font-size: 23px;
+        font-weight: 700;
+      }
+      p {
+        display: inline;
+        font-size: 12px;
+        color: darkgray;
+      }
+    }
+  }
+  ul {
+    padding-left: 30px;
+    li {
+      font-size: 15px;
+      font-weight: lighter;
+      line-height: 2;
+      list-style-type: disc;
+
+      span {
+        color: red;
+      }
+    }
+  }
+  p {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      width: 120px;
+      height: 50px;
+      background-color: transparent;
+      font-size: 20px;
+    }
+    button:first-child {
+      color: #fff;
+      border: 1px solid #fff;
+      margin-right: 30px;
+    }
+    button:last-child {
+      color: #fff;
+      background-color: #0a22fb;
+      border: none;
+    }
+  }
+`;
+export const Lyricstext = styled.div`
+  color: gray;
+  font-size: 15px;
+  margin: 50px 0;
+  width: 900px;
+  @media (max-width: 1400px) {
+    width: 700px;
+  }
+  line-height: 3;
+  overflow:hidden;
+  text-overflow: ellipsis;
+`;
+export const Longbut = styled.div`
+  width: 900px;
+  height: 60px;
+  @media (max-width: 1400px) {
+    width: 700px;
+  }
+  button{
+    margin: 0 0 0 30px;
+    height: 40px;
+    width: 200px;
+    border-radius: 20px;
+    font-size: 18px;
+    background: none;
+    color: white;
+    border: 1px solid #1a1a1a;
+  }
+`
+export const FooterPage = styled.div`
+  line-height: 2.5;
+  width: 80%;
 `;

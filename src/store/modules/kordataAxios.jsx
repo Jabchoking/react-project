@@ -80,5 +80,3 @@ const kordataslice = createSlice({
 
 export const { useswiper, randomset } = kordataslice.actions;
 export default kordataslice.reducer;
-
-/* https://gist.githubusercontent.com/Jabchoking/89b047ed80935a36b3dd476b04a541ab/raw/9429041fd5beff9a47b9d048e7ef015260c28406/gistfile1.txt */

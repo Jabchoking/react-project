@@ -8,6 +8,7 @@ import Searchpage from "./components/Searchpage";
 import List from "./file/List";
 import ListQna from "./file/ListQna";
 import ListItem from "./file/ListItem";
+import Main from "./file/Main";
 import Storage from "./user/storage";
 import Login from "./login/Login";
 import JoinLogin from "./login/JoinLogin";
@@ -16,6 +17,7 @@ import SignUpCompleted from "./login/SignUpCompleted";
 import FooterPolicy from "./footer/FooterPolicy";
 import NavBar from "./components/NavBar";
 import LyricsDisplay from "./file/LyricsDisplay";
+import Eventbanner from "./components/Eventbanner";
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path=":searchtext" element={<Searchpage />} />
+            <Route path="/event" element={<Eventbanner />} />
           </Route>
           <Route path="/chart">
             <Route index element={<MusicChart />} />

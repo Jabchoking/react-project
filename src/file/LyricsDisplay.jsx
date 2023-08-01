@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Longbut, Lyricstext } from "../assets/css/MusicSubcss";
 
 const Lyrics = ({ artist, song }) => {
   const [lyrics, setLyrics] = useState("");
-
+  const [longbut , setlongbut] = useState(false)
   useEffect(() => {
     const fetchLyrics = async () => {
       const apiKey = "021b67939de3203f3f7ac2782d3b08a2";
@@ -27,7 +28,16 @@ const Lyrics = ({ artist, song }) => {
     fetchLyrics();
   }, []);
 
-  return <a>{lyrics ? <p>{lyrics}</p> : <p>가사를 불러오는 중...</p>}</a>;
+  return (
+    <>
+    <Lyricstext style={{ height: longbut? '':400}}>
+      {lyrics ? <p>{lyrics}</p> : <p>가사를 불러오는 중...</p>}
+    </Lyricstext>
+    <Longbut>
+    <button onClick={()=>setlongbut(!longbut)} >{longbut ? "접기":"더보기"}</button>
+    </Longbut>
+    </>
+  );
 };
 
 export default Lyrics;

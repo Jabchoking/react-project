@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 const initialState = {
   billboarddatas: [], // 빈 배열로 초기화
   billboardswiperarr: [],
@@ -21,7 +20,6 @@ export const billboarddata = createAsyncThunk(
     }
   }
 );
-
 const billboarddataslice = createSlice({
   name: "billboarddata",
   initialState,
@@ -79,7 +77,6 @@ const billboarddataslice = createSlice({
       });
   },
 });
-
 export const { billboardswiper, billboardRandomdset } =
   billboarddataslice.actions;
 export default billboarddataslice.reducer;

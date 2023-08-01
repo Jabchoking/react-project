@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { LOGOUT, userAdd } from "../store/modules/UserSlice";
 import { Homecontent, Inner } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
 import Footer from "../footer/Footer";
 import KorRandombenner from "../components/KorRandombenner";
 import BillboradRandombenner from "../components/BillboradRandombenner";
+import KorlistBenner from "../components/KorlistBenner";
+import BillboardBenner from "../components/BillboardBenner";
+import TodayRecommend from "../components/TodayRecommend";
 
 const Main = () => {
   const [jsonData, setJsonData] = useState([]);
@@ -42,11 +46,13 @@ const Main = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
   return (
     <Homecontent>
       <Inner>
+        <TodayRecommend />
+        <KorlistBenner />
         <KorRandombenner />
+        <BillboardBenner />
         <BillboradRandombenner />
       </Inner>
       <Footer />

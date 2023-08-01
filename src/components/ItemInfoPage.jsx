@@ -32,19 +32,20 @@ import Commentitem from "./Commentitem";
 import KorRandombenner from "./KorRandombenner";
 import BillboradRandombenner from "./BillboradRandombenner";
 import LyricsDisplay from "../file/LyricsDisplay";
-import { addinfoplaylist, clicklike } from "../store/modules/userinfo";
 
 const ItemInfoPage = memo(() => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const userinfo = useSelector(state=> state.userinfo.data)
   const { chartid, listname } = useParams();
   const [heart, setheart] = useState(false);
   const [Dashon, setDashon] = useState(false);
   const [comment, setcomment] = useState([]);
   const commentlist = useSelector((state) => state.comment.data);
-  const clickHeart = (e) => setheart(!heart);
+  const clickHeart = (e) => {
+    setheart(!heart);
+  };
   const clickDash = (e) => setDashon(!Dashon);
+
   useEffect(() => {
     // console.log("작동");
     if (listname === "kor") {
@@ -65,6 +66,14 @@ const ItemInfoPage = memo(() => {
 
   const chkitem = list.find((i) => i.rank === Number(chartid));
 
+  /* 찜하기 여부 값 가져오는 기능 */
+  useEffect(() => {
+    if (chkitem && user && user.pick) {
+      const isSongAdded = user.pick.some((song) => song.name === chkitem.name);
+      setheart(isSongAdded);
+    }
+  }, [user, chkitem]);
+
   const [info, setinfo] = useState(false);
   const clickinfo = () => setinfo(!info);
   if (loading) {
@@ -72,6 +81,16 @@ const ItemInfoPage = memo(() => {
   }
   /* 사용자 정의 hook/ IsPlayAdd 실행해서 해당 내용 playList객체에 저장 */
   const isSongAdded = useIsfindList(list, user); // 커스텀 훅 호출
+  const findplayListadd = (id) => {
+    const playList = list.find((song) => song.rank === id);
+    const isAdded = isSongAdded(id);
+    if (isAdded) {
+      alert("이미 추가된 노래입니다.");
+    } else {
+      dispatch(addplaylist(playList));
+      alert("플레이 리스트에 추가되었습니다.");
+    }
+  };
 
   const like = (rank) => {
     if (list.length === 0) {
@@ -115,34 +134,6 @@ const ItemInfoPage = memo(() => {
     dispatch(addMusicplay(selectMusic));
   };
 
-// 이하 07 . 27 일자 에 추가 교체한 함수들
-  // 조건 확인 함수
-const isLiked = () => {
-  // user.login_UserID와 userinfo 배열의 user 속성 비교
-  const foundUser = userinfo.find((item) => item.user === user.login_UserID);
-  
-  if (foundUser) {
-    // 사용자를 찾았을 경우 해당 사용자의 like 배열에서 chkitem.name 검색
-    const isNameLiked = foundUser.like.includes(chkitem.name);
-    return isNameLiked; // true 또는 false 반환
-  } else {
-    return false; // 사용자를 찾지 못한 경우 false 반환
-  }
-};
-const likeitem = {user:user.login_UserID , like : chkitem.name}
-
-  // 플레이리스트에 추가버튼 함수
-  const add = () => {
-    if(user){
-      console.log('작동?')
-      const item = {user:user.login_UserID , name:chkitem.name}
-      dispatch(addinfoplaylist(item));
-      alert(`${user.login_UserID} 님의 플레이리스트에 추가되었습니다 !`)
-    }else{
-      alert(`${<Link to={`/Login`} >`로그인`</Link>}을 먼저 해주세요`)
-    }
-  };
-
   return (
     <>
       <Iteminfobg
@@ -174,7 +165,7 @@ const likeitem = {user:user.login_UserID , like : chkitem.name}
       <Homecontent>
         <Inner>
           <ItemInfoPagediv>
-            <img
+            <img className="topimg"
               src={
                 listname === "kor" ? `/${chkitem.image}` : `${chkitem.image}`
               }
@@ -196,14 +187,16 @@ const likeitem = {user:user.login_UserID , like : chkitem.name}
                   재생
                 </button>
                 <button className="typebleck">MP3구매</button>
-                <button className="typebleck"
-                  onClick={add}>
+                <button
+                  className="typebleck"
+                  onClick={() => findplayListadd(chkitem.rank)}
+                >
                   <AiOutlineEdit />
                   플레이리스트 추가
                 </button>
                 <div className="Obox">
-                  <button onClick={() => dispatch(clicklike(likeitem))}>
-                    {isLiked() ? (
+                  <button onClick={() => like(chkitem.rank)}>
+                    {heart ? (
                       <AiFillHeart
                         onClick={clickHeart}
                         style={{ color: `#ff0050` }}

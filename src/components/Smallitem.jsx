@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { Smallitemli } from "../assets/css/MusicSub";
 import {
   AiFillCaretDown,
@@ -6,18 +6,30 @@ import {
   AiOutlineMinusCircle,
 } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsCaretRightFill } from "react-icons/Bs";
+import { playListandPlay } from "../store/modules/UserSlice";
 
 const Smallitem = memo(({ z }) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  if (!z) {
+    return;
+  }
   const listname = z.album ? "kor" : "billboard";
+  const selectSong = () => {
+    dispatch(playListandPlay(z));
+  };
 
   return (
     <Smallitemli>
       {/* <img src="img/Allergy.jpg" alt="" /> */}
       {z.image ? (
-        <img src={listname === "kor" ? `/${z.image}` : `${z.image}`} alt="" />
+        <img
+          src={listname === "kor" ? `/${z.image}` : `${z.image}`}
+          alt=""
+          onClick={() => selectSong()}
+        />
       ) : (
         ""
       )}
@@ -46,7 +58,6 @@ const Smallitem = memo(({ z }) => {
           <NavLink to={`/chart/${listname}/${z.artist}/${`artist`}`}>
             {z.artist}
           </NavLink>
-          
         </h4>
       </div>
     </Smallitemli>

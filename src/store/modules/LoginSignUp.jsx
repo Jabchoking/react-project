@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const localDataSign = localStorage.getItem("sign");
 const localDataNewSignUp = localStorage.getItem("newSignUpData");
 const initialState = {
@@ -108,9 +107,45 @@ export const LoginSignUpSlice = createSlice({
           JSON.stringify(updatedNewSignUpData)
         );
         state.newSignUpData = updatedNewSignUpData;
+
+        (state.chked1 = false),
+          (state.chked2 = false),
+          (state.chked3 = false),
+          (state.chked4 = false),
+          (state.chked5 = false),
+          (state.totalChked = false);
+        (state.UserID = ""),
+          (state.UserPassword = ""),
+          (state.repassword = ""),
+          (state.eMail = ""),
+          (state.phone = ""),
+          (state.eMail_select = "");
       } else {
         alert("정보를 다시 확인해주세요");
       }
+    },
+    loggout(state, action) {
+      const user = action.payload; // 현재 로그인 중인 사용자 정보를 가져옴
+
+      const updatedNewSignUpData = state.newSignUpData.map((item) =>
+        item.UserID === user.login_UserID &&
+        item.UserPassword === user.login_UserPassword
+          ? {
+              ...item,
+              user: {
+                pick: user.pick || [],
+                playList: user.playList || [],
+                playmusic: user.playmusic || [],
+              },
+            }
+          : item
+      );
+
+      localStorage.setItem(
+        "newSignUpData",
+        JSON.stringify(updatedNewSignUpData)
+      );
+      state.newSignUpData = updatedNewSignUpData; // 상태를 업데이트함
     },
   },
 });
@@ -129,6 +164,7 @@ export const {
   chingeselect,
   chingeREPASSWORD,
   changetotal,
+  loggout,
 } = LoginSignUpSlice.actions;
 
 export default LoginSignUpSlice.reducer;

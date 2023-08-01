@@ -1,9 +1,10 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { NavBardiv } from "../assets/css/MusicSub";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AiFillTrophy, AiOutlineLogin, AiOutlineUser } from "react-icons/ai";
+import { AiFillBell, AiFillDropboxCircle, AiFillGift, AiFillHome, AiFillTrophy, AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT } from "../store/modules/UserSlice";
+import { loggout } from "../store/modules/LoginSignUp";
 
 const NavBar = memo(() => {
   const navi = useNavigate();
@@ -14,31 +15,64 @@ const NavBar = memo(() => {
     navi(`/${searchtext}`);
   };
   const { user } = useSelector((state) => state.user);
+  const { newSignUpData } = useSelector((state) => state.signup);
   const login_UserID = user && user.login_UserID;
   const dispatch = useDispatch();
-  const box = () => {
-    if (user) {
-      navi("/storage");
-    } else {
+
+  const savelogout = () => {
+    dispatch(loggout(user));
+    dispatch(LOGOUT());
+    navi("/");
+  };
+
+    const getInitialSize = () => {
+      return window.innerWidth <= 1400 ? 2 : 3;
+    };
+  
+    const [size, setsize] = useState(getInitialSize());
+
+  
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width > 1400) {
+        setsize(3);
+      } else {
+        setsize(2);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [size]);
+  const box = (e) => {
+    if (!user) {
       alert("로그인 후 이용 가능합니다.");
+      e.preventDefault();
     }
   };
   return (
     <NavBardiv>
-      <h2>네비게이션바</h2>
+      <h2><NavLink to="/" >{size ===3 ? <img className="big" src="./biglogo.png" alt="" />
+      : <img className="small" src="/vite.svg" alt="" /> }</NavLink></h2>
       <hr />
       {user ? (
-        <Link to={`/storage`}>
-          <span>"{login_UserID}"님 환영합니다</span>
-        </Link>
+        <>
+        { size===3? <Link to={`/storage`}>
+          <span> {login_UserID} 님 환영합니다!  </span>
+        </Link> : null}
+        <button className="logoutbit" onClick={() => savelogout()}> <AiOutlineLogout/>{size===3?"로그아웃":""}</button>
+        </>
       ) : (
-        <NavLink to={`/Login`}className={({ isActive }) => (isActive ? "on" : "")}>
+        <NavLink to={`/Login`}>
           <AiOutlineUser />
-          <span>로그인</span>{" "}
+          <span>{size===3?"로그인":""}</span>{" "}
         </NavLink>
       )}
       <hr />
-      <form onSubmit={searchsubmit}>
+      {size===3? <><form onSubmit={searchsubmit}>
         <input
           type="text"
           placeholder="검색 가능"
@@ -47,10 +81,12 @@ const NavBar = memo(() => {
         />
       </form>
       <hr />
+      </>
+      :null}
       <ul>
         <li>
           <NavLink to="/" className={({ isActive }) => (isActive ? "on" : "")}>
-            홈
+          <AiFillHome/>{size===3?"홈":""}
           </NavLink>
         </li>
         <li>
@@ -58,19 +94,33 @@ const NavBar = memo(() => {
             to="/chart"
             className={({ isActive }) => (isActive ? "on" : "")}
           >
-            <AiFillTrophy style={{ color: "#EDE837" }} /> 차트
+            <AiFillTrophy /> {size===3?"차트":""}
           </NavLink>
         </li>
         <li>
-          {user ? (
-            <button onClick={() => dispatch(LOGOUT())}>로그아웃</button>
-          ) : (
-            <Link to="/Login">로그인 이동</Link>
-          )}
+          <NavLink
+            to="/storage"
+            onClick={box}
+            className={({ isActive }) => (isActive ? "on" : "")}
+          >
+            <AiFillDropboxCircle/>{size===3?"보관함":""}
+          </NavLink>
         </li>
-        <li>{<p onClick={box}>보관함 이동</p>}</li>
         <li>
-          <Link to="/list">리스트 이동</Link>
+          <NavLink
+            to="/list"
+            className={({ isActive }) => (isActive ? "on" : "")}
+          >
+            <AiFillBell/>{size===3?"리스트":""}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/event"
+            className={({ isActive }) => (isActive ? "on" : "")}
+          >
+            <AiFillGift/>{size===3?"멤버쉽":""}
+          </NavLink>
         </li>
       </ul>
     </NavBardiv>

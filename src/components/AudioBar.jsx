@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react";
 import { AudioBardiv } from "../assets/css/MusicSub";
 import Playlist from "./Playlist";
 import { useDispatch, useSelector } from "react-redux";
-import { playListToggle } from "../store/modules/UserSlice";
+import { playListToggle, playListandPlay } from "../store/modules/UserSlice";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
@@ -12,7 +12,7 @@ const AudioBar = memo(() => {
   const toggle2 = () => {
     dispatch(playListToggle());
   };
-  const { user } = useSelector((state) => state.user);
+  const { user, selectedSong } = useSelector((state) => state.user);
   const [Musicplaylist, setMusicPlaylist] = useState([]);
   const stoptoggle = (e) => {
     e.stopPropagation();
@@ -31,14 +31,32 @@ const AudioBar = memo(() => {
     setCurrentTrack(Musicplaylist[currentTrackIndex]);
   }, [Musicplaylist, currentTrackIndex]);
 
+  const selectimg = Musicplaylist.find(
+    (item) => item.name === selectedSong?.name
+  );
   return (
     <>
       <AudioBardiv onClick={toggle2}>
         <div>
           <div className="inst">
-            {currentTrack && (
+            {selectimg ? ( // selectimg가 값이 있는 경우
               <div>
-                {currentTrack.image && (
+                {selectimg.image && (
+                  <img
+                    src={
+                      selectimg.album
+                        ? `/${selectimg.image}`
+                        : `${selectimg.image}`
+                    }
+                    alt=""
+                  />
+                )}
+                <span>{selectimg.name}</span>
+              </div>
+            ) : (
+              // selectimg가 값이 없는 경우
+              <div>
+                {currentTrack && currentTrack.image && (
                   <img
                     src={
                       currentTrack.album
@@ -48,7 +66,7 @@ const AudioBar = memo(() => {
                     alt=""
                   />
                 )}
-                <span>{currentTrack.name}</span>
+                {currentTrack && <span>{currentTrack.name}</span>}
               </div>
             )}
           </div>

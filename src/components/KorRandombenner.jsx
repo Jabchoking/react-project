@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Randombennerdiv } from "../assets/css/MusicSub";
 import { useDispatch, useSelector } from "react-redux"; // useSelector 추가
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,9 +12,34 @@ const KorRandombenner = memo(() => {
   const dispatch = useDispatch();
   const randomdata = useSelector((state) => state.kordata.randomdata);
   useEffect(() => {
-    setTimeout(()=>{dispatch(randomset())},5)
+    setTimeout(() => {
+      dispatch(randomset());
+    }, 100);
   }, [dispatch]);
   const loading = useSelector((state) => state.kordata.loading);
+
+  const getInitialSize = () => {
+    return window.innerWidth <= 1400 ? 2 : 3;
+  };
+
+  const [wsize, setwsize] = useState(getInitialSize());
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width > 1200) {
+        setwsize(3);
+      } else {
+        setwsize(2);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [wsize]);
+
   if (loading) {
     return <h2>불러오는중</h2>;
   }
@@ -23,7 +48,7 @@ const KorRandombenner = memo(() => {
       <h2>오늘의 추천 한국음악</h2>
       <Swiper
         spaceBetween={30}
-        slidesPerView={5}
+        slidesPerView={wsize===3?5:3}
         loop={true}
         className="mySwiper"
       >

@@ -4,7 +4,9 @@ import styled, { keyframes } from "styled-components";
 export const Homecontent = styled.div`
   display: block;
   margin-left: 250px;
-  margin-bottom: 120px;
+  @media (max-width: 1400px) {
+    margin-left: 70px;
+  }
   background-color: #000000;
   h2 {
     font-size: 30px;
@@ -29,8 +31,17 @@ export const NavBardiv = styled.div`
   left: 0;
   height: 100%;
   width: 250px;
+  @media (max-width: 1400px) {
+    width: 70px;
+    font-size: 30px;
+  }
+  .big{
+    width: 70%;
+  }
+  .small{
+    width: 100%;
+  }
   font-size: 20px;
-  h2 { font-size: 20px;}
   a {
     color: white;
     font-size: 20px;
@@ -56,8 +67,28 @@ export const NavBardiv = styled.div`
       border: 1px solid #043e69;
     }
   }
+  .logoutbit{
+      color: white;
+      padding: 0 20px;
+      border: none;
+      border-radius: 5px;
+      height: 25px;
+      /* text-align: center; */
+      margin-right: 10px;
+      line-height: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #1a1a1a;
+      margin: auto;
+      width: 100%;
+      @media (max-width: 1400px) {
+    padding: 0;
+  }
+    }
   ul {
     li {
+      cursor: pointer;
+
       button {
         border: none;
         background-color: transparent;
@@ -79,7 +110,7 @@ export const AudioBardiv = styled.div`
   bottom: 0;
   left: 0;
   z-index: 15;
-  padding:20px 0 0 600px;
+  padding: 20px 0 0 600px;
   .inst {
     position: absolute;
     left: 280px;
@@ -87,7 +118,7 @@ export const AudioBardiv = styled.div`
     width: 180px;
     display: flex;
     align-items: center;
-    
+
     img {
       height: 50px;
     }
@@ -96,11 +127,10 @@ export const AudioBardiv = styled.div`
       font-weight: 700;
       padding-left: 20px;
       position: absolute;
-      top:25%;
     }
   }
   div {
-    z-index:50;
+    z-index: 50;
     width: 100%;
     background-color: #191919;
 
@@ -131,11 +161,11 @@ export const AudioBardiv = styled.div`
         height: 20px;
         box-shadow: none;
         background-color: #000;
-        z-index:70;
+        z-index: 70;
       }
     }
   }
- 
+
   .audioPlay {
     position: relative;
   }
@@ -266,10 +296,15 @@ export const Smallitemli = styled.li`
     }
   }
 `;
+
 // 간격잡아주는 inner
 export const Inner = styled.div`
-padding: 40px;
-padding-bottom: 150px;
+  padding: 40px;
+  padding-bottom: 150px;
+  margin-right: 200px;
+  @media (max-width: 1400px) {
+    margin-right: 50px;
+  }
 `;
 // 아이템 인포
 export const Iteminfobg = styled.div`
@@ -284,78 +319,77 @@ export const Iteminfobg = styled.div`
 `;
 // 인포 컨텐츠
 export const ItemInfoPagediv = styled.div`
-img {
-  width: 180px;
-  height: 180px;
-}
-.butbox {
-  display: flex;
-  margin: 10px 0;
-  .typered {
-    background-color: #ff0050;
+  .topimg {
+    width: 180px;
+    height: 180px;
   }
-  .typebleck {
-    background-color: #222222;
-  }
-  button {
-    color: white;
-    padding: 0 20px;
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    /* text-align: center; */
-    margin-right: 10px;
-    line-height: 40px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .Obox {
+  .butbox {
+    display: flex;
+    margin: 10px 0;
+    .typered {
+      background-color: #ff0050;
+    }
+    .typebleck {
+      background-color: #222222;
+    }
     button {
-      border: 1px solid #999999;
-      width: 40px;
+      color: white;
+      padding: 0 20px;
+      border: none;
+      border-radius: 5px;
       height: 40px;
-      border-radius: 20px;
-      font-size: 22px;
-      background: none;
-      color: #999999;
-      line-height: 10px;
-      padding: 0;
+      /* text-align: center; */
+      margin-right: 10px;
+      line-height: 40px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .Obox {
+      button {
+        border: 1px solid #999999;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        font-size: 22px;
+        background: none;
+        color: #999999;
+        line-height: 10px;
+        padding: 0;
+      }
+    }
+    .clicklist {
+      position: relative;
+    }
+    .dishul {
+      position: absolute;
+      width: 80px;
+      top: 10px;
+      left: 300px;
+      border-radius: 15px;
+      background-color: #999999;
     }
   }
-  .clicklist {
-    position: relative;
+  .comentbox {
+    border-top: 1px solid #222222;
+    padding: 50px 0;
   }
-  .dishul {
-    position: absolute;
-    width: 80px;
-    top: 10px;
-    left: 300px;
+  .commentinput {
+    height: 50px;
     border-radius: 15px;
-    background-color: #999999;
+    line-height: 50px;
+    padding-left: 20px;
+    input {
+      color: white;
+      font-size: 16px;
+      width: 95%;
+      border: none; /* 태두리 선 제거 */
+      outline: none; /* 포커스 시 나타나는 외곽선 제거 */
+      &:focus {
+        border: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+        outline: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
+      }
+    }
   }
-}
-.comentbox {
-  border-top: 1px solid #222222;
-  padding: 50px 0;
-}
-.commentinput {
-height: 50px;
-border-radius: 15px;
-line-height: 50px;
-padding-left: 20px;
-​
-input {
-  color: white;
-  font-size: 16px;
-  width: 95%;
-  border: none; /* 태두리 선 제거 */
-  outline: none; /* 포커스 시 나타나는 외곽선 제거 */
-  &:focus {
-    border: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
-    outline: none !important; /* 포커스 시 나타나는 외곽선 덮어쓰기 */
-  }
-}
-}
 `;
 export const Iteminfoitem = styled.div`
   position: fixed;
@@ -480,13 +514,68 @@ export const Listitemli = styled.li`
 // 검색결과 페이지
 export const Searchpagediv = styled.div`
   font-size: 16px;
+  h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 50px;
+  }
+  h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  h4 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  ul {
+    li {
+      margin: 20px 20px 20px 0;
+      padding: 0;
+      margin: 0;
+      div {
+        display: flex;
+        align-items: center;
+        img {
+          width: 50px;
+          height: 50px;
+          margin: 20px 20px 20px 0;
+        }
+      }
+    }
+    .null {
+      margin-bottom: 30px;
+    }
+  }
+`;
+const arrowop = keyframes`
+  from {
+    opacity: 0;
+    }
+  to {
+    opacity: 1;
+  }
 `;
 // 음악리스트에서 재생 / 재생목록 추가버튼 박스
 export const Playpushbox = styled.div`
   padding-bottom: 40px;
   border-bottom: 1px solid #222222;
+  position: relative;
   h2 {
     margin-bottom: 20px;
+  }
+  .arrow {
+    opacity: 0;
+    display: none;
+  }
+  .arrowon {
+    color: #0a22fb;
+    font-size: 30px;
+    position: absolute;
+    top: 140%;
+    left: 3%;
+    animation: ${arrowop} 0.5s ease-in-out infinite forwards;
   }
   .butbox {
     display: flex;
@@ -509,16 +598,38 @@ export const Playpushbox = styled.div`
     }
   }
 `;
-// 홈 상단컨텐츠
+// 랜덤 배너
+export const Randombennerdiv = styled.div`
+  height: 400px;
+  margin: 100px 0;
+`;
+// 랜덤 아이탬
+export const Randomitemdiv = styled.div`
+  width: 100%;
+
+  h3 {
+    font-size: 22px;
+    font-weight: 300;
+  }
+  h4 {
+    color: #555555;
+    font-size: 18px;
+    font-weight: 300;
+  }
+  img {
+    width: 100%;
+  }
+`;
 export const TodayRecommendationDIV = styled.div`
   width: 100%;
   margin: auto;
   height: 350px;
   display: flex;
-  background-color: rgba(214, 214, 214, 0.5);
+  background-color: rgba(19, 19, 19, 1);
+  color: #fff;
   cursor: pointer;
   img {
-    width: 40%;
+    width: 350px;
     height: 350px;
     background-size: cover;
   }
@@ -528,6 +639,7 @@ export const TodayRecommendationDIV = styled.div`
     padding: 5px 0 0 30px;
     position: relative;
     box-sizing: border-box;
+    border: 1px solid #191919;
     span {
       font-size: 18px;
       display: block;
@@ -552,25 +664,7 @@ export const TodayRecommendationDIV = styled.div`
     }
   }
 `;
-// 랜덤 배너
-export const Randombennerdiv=styled.div`
-  height: 400px;
-  margin-top: 100px ;
-`
-// 랜덤 아이탬
-export const Randomitemdiv = styled.div`
+export const Img = styled.img`
   width: 100%;
-  
-  h3{
-    font-size: 22px;
-    font-weight: 300;
-  }
-  h4{
-    color: #555555;
-    font-size: 18px;
-    font-weight: 300;
-  }
-  img{
-    width: 100%;
-  }
-  `
+  cursor: pointer;
+`;

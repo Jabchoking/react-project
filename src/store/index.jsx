@@ -5,7 +5,7 @@ import dataReduer from "./modules/listSlice";
 import userReduer from "./modules/UserSlice";
 import SignUpReduer from "./modules/LoginSignUp";
 import comment from "./modules/comment";
-import userinfo from "./modules/userinfo"
+
 export const store = configureStore({
   reducer: {
     kordata,
@@ -14,6 +14,5 @@ export const store = configureStore({
     user: userReduer,
     signup: SignUpReduer,
     comment,
-    userinfo,
   },
 });

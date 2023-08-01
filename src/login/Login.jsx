@@ -11,7 +11,6 @@ import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
-import { adduser } from "../store/modules/userinfo";
 
 const Login = () => {
   const { login_UserID, login_UserPassword } = useSelector(
@@ -32,12 +31,8 @@ const Login = () => {
       console.log("로그인 성공");
       dispatch(loginOnSubmit(compare));
       navigate("/");
-      console.log(compare)
-      dispatch(adduser(compare.UserID))
     } else {
       console.log("로그인 실패");
-      localStorage.removeItem("user");
-      dispatch(loginOnSubmit(null));
       alert("정보를 다시 확인해 주세요");
     }
   };

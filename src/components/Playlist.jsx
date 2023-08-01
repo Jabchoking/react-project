@@ -4,9 +4,15 @@ import { Playlistdiv } from "../assets/css/MusicSub";
 import { AiOutlineInteraction } from "react-icons/ai";
 import { BsCaretRightFill } from "react-icons/Bs";
 import { FaRandom } from "react-icons/fa";
+import { RiDeleteBinFill } from "react-icons/Ri";
 import { useDispatch, useSelector } from "react-redux";
 import Smallitem from "./Smallitem";
-import { addplayListMusic } from "../store/modules/UserSlice";
+import {
+  addplayListMusic,
+  allremoveplaylist,
+  randomPlayList,
+} from "../store/modules/UserSlice";
+
 const Playlist = memo(() => {
   const { playListtog, user } = useSelector((state) => state.user);
   const [jsonData, setJsonData] = useState([]);
@@ -29,9 +35,11 @@ const Playlist = memo(() => {
     };
     fetchData();
   }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
   if (error) {
     return <div>Error: {error.message}</div>;
   }
@@ -45,24 +53,24 @@ const Playlist = memo(() => {
   return (
     <Playlistdiv className={playListtog ? "on" : ""}>
       <div className="cover">
-        {user && user.playList.length > 0 ? (
-          <img src={user.playList[0].image} alt="" />
-        ) : jsonData.length > 0 ? (
+        {user && user.playList && user.playList.length > 0 ? (
+          <img src={`/${user.playList[0].image}`} alt="" />
+        ) : user && user.playList && user.playList.length === 0 ? null : (
           <img src={jsonData[0].image} alt="" />
-        ) : null}
+        )}
       </div>
       <div className="playmusiclist">
         <div className="playbutbox">
           <h2>플레이 리스트</h2>
           <div className="playlistbut">
-            <h2>
-              <AiOutlineInteraction />
+            <h2 onClick={() => dispatch(allremoveplaylist())}>
+              <RiDeleteBinFill />
             </h2>
-            <h2>
+            <h2 onClick={() => dispatch(randomPlayList(user.playList))}>
               <FaRandom />
             </h2>
             <h2>
-              {user && user.playList.length > 0 ? (
+              {user ? (
                 <BsCaretRightFill onClick={() => MusicPlayAdd(user.playList)} />
               ) : (
                 <BsCaretRightFill onClick={() => MusicPlayAdd(jsonData)} />
@@ -71,7 +79,7 @@ const Playlist = memo(() => {
           </div>
         </div>
         <ul>
-          {user && user.playList.length > 0
+          {user
             ? user.playList.map((item, idx) => <Smallitem z={item} key={idx} />)
             : jsonData.map((item, idx) => <Smallitem z={item} key={idx} />)}
         </ul>
@@ -79,4 +87,5 @@ const Playlist = memo(() => {
     </Playlistdiv>
   );
 });
+
 export default Playlist;

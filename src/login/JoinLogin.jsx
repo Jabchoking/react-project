@@ -15,7 +15,6 @@ import Footer from "../footer/Footer";
 import { Homecontent } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
-
 const JoinLogin = () => {
   const { chked1, chked2, chked3, chked4, chked5, totalChked } = useSelector(
     (state) => state.signup

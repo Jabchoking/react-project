@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchData } from "../store/modules/listSlice";
@@ -8,11 +8,22 @@ import { Homecontent } from "../assets/css/MusicSub";
 import AudioBar from "../components/AudioBar";
 import NavBar from "../components/NavBar";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const ListItem = () => {
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.data);
   const { listID } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -28,11 +39,10 @@ const ListItem = () => {
   const goBackToList = () => {
     navigate("/list");
   };
-
   return (
     <>
       <ListItemDiv>
-        <div>
+        <div data-aos="fade-down" data-aos-duration="500">
           <h2>{title}</h2>
           <div className="item_textbox">
             <p>{category}</p>
@@ -44,17 +54,32 @@ const ListItem = () => {
               <div className="itm_box">
                 <strong>({ListSubitem.content0})</strong>
                 <p>{ListSubitem.content1}</p>
-                <img src={ListSubitem.constent1_img} alt="" />
+                <img
+                  src={ListSubitem.constent1_img}
+                  alt=""
+                  data-aos="fade-down"
+                  data-aos-duration="800"
+                />
                 <p>{ListSubitem.content2}</p>
-                <img src={ListSubitem.constent2_img} alt="" />
+                <img
+                  src={ListSubitem.constent2_img}
+                  alt=""
+                  data-aos="fade-down"
+                  data-aos-duration="1000"
+                />
                 <p>{ListSubitem.content3}</p>
-                <img src={ListSubitem.constent3_img} alt="" />
+                <img
+                  src={ListSubitem.constent3_img}
+                  alt=""
+                  data-aos="fade-down"
+                  data-aos-duration="1200"
+                />
               </div>
             )}
             {ListSubitem.slide1 && (
               <div>
                 {ListSubitem.slide1.map((item, index) => (
-                  <img key={index} src={item} alt="" />
+                  <img key={index} src={item} alt="" data-aos="fade-up" />
                 ))}
               </div>
             )}

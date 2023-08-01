@@ -10,10 +10,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { NavLink } from "react-router-dom";
 
+
+
 const BillboardBenner = memo(() => {
   const dispatch = useDispatch();
-  const [wsize, setwsize] = useState(3);
-
   useEffect(() => {
     const fetchData = () => {
       dispatch(billboarddata());
@@ -31,6 +31,12 @@ const BillboardBenner = memo(() => {
   useEffect(() => {
     dispatch(billboardswiper(5));
   }, [billboarddatas]);
+  
+  const getInitialSize = () => {
+    return window.innerWidth <= 1400 ? 2 : 3;
+  };
+
+  const [wsize, setwsize] = useState(getInitialSize());
 
   useEffect(() => {
     const handleResize = () => {

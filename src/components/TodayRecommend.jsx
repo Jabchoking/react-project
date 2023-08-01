@@ -25,7 +25,7 @@ const TodayRecommend = () => {
   return (
     <>
       <TodayRecommendationDIV onClick={pageON}>
-        <img src={data.image} alt="" />
+        <img src="./img/Ditto2.jpg" alt="" />
         <div>
           <p>
             <i></i>
