@@ -11,12 +11,12 @@ import "swiper/css/navigation";
 const KorRandombenner = memo(() => {
   const dispatch = useDispatch();
   const randomdata = useSelector((state) => state.kordata.randomdata);
+  const loading = useSelector((state) => state.kordata.loading);
   useEffect(() => {
     setTimeout(() => {
       dispatch(randomset());
     }, 150);
-  }, [dispatch]);
-  const loading = useSelector((state) => state.kordata.loading);
+  }, [dispatch,loading]);
 
   const getInitialSize = () => {
     return window.innerWidth <= 1400 ? 2 : 3;
