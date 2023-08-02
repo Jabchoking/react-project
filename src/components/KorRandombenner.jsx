@@ -14,7 +14,7 @@ const KorRandombenner = memo(() => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(randomset());
-    }, 100);
+    }, 150);
   }, [dispatch]);
   const loading = useSelector((state) => state.kordata.loading);
 

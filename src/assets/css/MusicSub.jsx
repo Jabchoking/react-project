@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 // 홈 컨텐츠 영역
 export const Homecontent = styled.div`
   display: block;
+  margin-bottom:100px ;
   margin-left: 250px;
   @media (max-width: 1400px) {
     margin-left: 70px;
@@ -250,9 +251,11 @@ export const MusicListBennerdiv = styled.div`
 export const Benneritemli = styled.li``;
 // 베너 안쪽 개별 아이템
 export const Smallitemli = styled.li`
+  position: relative;
   img {
     height: 60px;
     width: 60px;
+    transition: 0.5s;
   }
   border-bottom: 1px solid #333333;
   a {
@@ -261,18 +264,24 @@ export const Smallitemli = styled.li`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
+  &:hover img{
+    opacity: 0.5;
+  }
   &:hover::after {
+    content: '';
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 60px;
-    background-color: white;
-    /* opacity: 0.4; */
+    top: 35px;
+    left: 37px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid white;
+    transform: translate(-50%, -50%) rotate(0deg);
+
   }
-  margin: 10px;
+  padding: 5px;
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -616,8 +625,28 @@ export const Randomitemdiv = styled.div`
     font-size: 18px;
     font-weight: 300;
   }
+  &:hover img{
+    opacity: 0.5;
+  }
+
   img {
     width: 100%;
+    transition: 0.5s;
+    position: relative;
+  }
+  &:hover::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid white;
+    transform: translate(-50%, -50%) rotate(0deg);
+
   }
 `;
 export const TodayRecommendationDIV = styled.div`
