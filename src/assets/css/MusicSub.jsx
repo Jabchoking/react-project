@@ -119,7 +119,6 @@ export const AudioBardiv = styled.div`
     width: 180px;
     display: flex;
     align-items: center;
-
     img {
       height: 50px;
     }
@@ -129,12 +128,14 @@ export const AudioBardiv = styled.div`
       padding-left: 20px;
       position: absolute;
     }
+    @media (max-width: 1400px) {
+      left: 100px;
+    }
   }
   div {
     z-index: 50;
     width: 100%;
     background-color: #191919;
-
     .rhap_container {
       width: 24%;
       z-index: 16;
@@ -165,12 +166,21 @@ export const AudioBardiv = styled.div`
         z-index: 70;
       }
     }
+    @media (max-width: 1400px) {
+      div {
+        width: 100%;
+        position: relative;
+        right: 10%;
+        .rhap_container {
+          .rhap_progress-container {
+            width: 80%;
+            margin-left: 50px;
+          }
+        }
+      }
+    }
   }
-
-  .audioPlay {
-    position: relative;
-  }
-`;
+`
 const playListOpen = keyframes`
   from {
     transform: translateY(100%);
@@ -459,6 +469,7 @@ export const Commentitemli = styled.li`
 export const MusicListul = styled.ul`
   background-color: #000;
   color: white;
+  min-height: 324px;
   .alllist {
     display: flex;
   }

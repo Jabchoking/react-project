@@ -54,7 +54,7 @@ const Playlist = memo(() => {
     <Playlistdiv className={playListtog ? "on" : ""}>
       <div className="cover">
         {user && user.playList && user.playList.length > 0 ? (
-          <img src={`/${user.playList[0].image}`} alt="" />
+          <img src={user.playList[0].peak_rank === "" ? `/${user.playList[0].image}` : `${user.playList[0].image}`} alt="" />
         ) : user && user.playList && user.playList.length === 0 ? null : (
           <img src={jsonData[0].image} alt="" />
         )}

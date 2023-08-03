@@ -1,5 +1,5 @@
 import "./assets/css/reset.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Home from "./page/Home";
 import MusicChart from "./page/MusicChart";
 import ItemInfoPage from "./components/ItemInfoPage";
@@ -8,7 +8,6 @@ import Searchpage from "./components/Searchpage";
 import List from "./file/List";
 import ListQna from "./file/ListQna";
 import ListItem from "./file/ListItem";
-import Main from "./file/Main";
 import Storage from "./user/storage";
 import Login from "./login/Login";
 import JoinLogin from "./login/JoinLogin";
@@ -23,6 +22,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      {/* <HashRouter> */}
         <NavBar />
         <Routes>
           <Route path="/">
