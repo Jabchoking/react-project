@@ -67,6 +67,7 @@ const NavBar = memo(() => {
         </>
       ) : (
         <NavLink to={`/Login`} className={({ isActive }) => (isActive ? "on" : "")} >
+
           <AiOutlineUser />
           <span>{size===3?"로그인":""}</span>{" "}
         </NavLink>
